@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RecordRepository extends PagingAndSortingRepository<ArchivalRecord, Long> {
+public interface ArchiveRecordRepository extends PagingAndSortingRepository<ArchivalRecord, Long> {
 
     @Query("From ArchivalRecord d where lower(d.Title) LIKE lower(concat('%',:keyword,'%')) OR lower(d.Keywords) LIKE lower(concat('%',:keyword,'%'))")
     List<ArchivalRecord> fetchRecordByKeywordInTitleAndTags(@Param("keyword") String titleKeyword);

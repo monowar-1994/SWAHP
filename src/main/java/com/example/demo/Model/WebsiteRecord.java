@@ -24,6 +24,12 @@ public class WebsiteRecord {
     @Column(length = 2048)
     public String url;
 
+    public String artifactFileName;
+    public String artifactFileLocation;
+    public String accessFileLocation;
+    public String preservationHash;
+    public String creationTime; // Format (yyyy-MM-dd)
+
     public String getSummary() {
         return summary;
     }
@@ -134,5 +140,45 @@ public class WebsiteRecord {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getArtifactFileName() {
+        return artifactFileName;
+    }
+
+    public void setArtifactFileName(String artifactFileName) {
+        this.artifactFileName = artifactFileName;
+    }
+
+    public String getArtifactFileLocation() {
+        return artifactFileLocation;
+    }
+
+    public void setArtifactFileLocation(String artifactFileLocation) {
+        this.artifactFileLocation = artifactFileLocation;
+    }
+
+    public String getAccessFileLocation() {
+        return accessFileLocation;
+    }
+
+    public void setAccessFileLocation(String accessFileLocation) {
+        this.accessFileLocation = accessFileLocation;
+    }
+
+    public String getPreservationHash() {
+        return preservationHash;
+    }
+
+    public void setPreservationHash(String preservationHash) {
+        this.preservationHash = preservationHash;
+    }
+
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
     }
 }

@@ -1,12 +1,15 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.ArchivalRecord;
+import com.example.demo.Model.WebsiteRecord;
 
 import java.util.List;
 
 public interface RecordCreationService {
 
-    public boolean createRecord(List<ArchivalRecord> recordList);
+    public boolean createArchivalRecord(List<ArchivalRecord> recordList);
 
-    public boolean createRecord(ArchivalRecord record);
+    public boolean createArchivalRecord(ArchivalRecord record);
+
+    public boolean createWebsiteRecord(WebsiteRecord record);
 }

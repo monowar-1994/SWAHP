@@ -33,7 +33,6 @@ public class ArchivalRecord {
     private String Notes;
     private String Keywords;
     private String Format;
-    //private String CompressionType;
     private Double Size_MB;
     private Integer Pixel_width;
     private Integer Pixel_height;
@@ -42,20 +41,16 @@ public class ArchivalRecord {
     private String Color_GreyScale;
     private Integer PageCount;
     private String Date_scanned;
-    @Column(length = 500)
-    //private String Scanner_Notes;
-    //private String Abstract;
     private String Access_Copy_Number;
 
 
-    // Fields added by me
+
     private String TiffFileName;
     private String tiffFileLocation;
     private String pdfFileLocation;
     private String Artifact_MD5_Hash;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date RecordCreationTime;
-    //private String Generic_Column_3;
+    private String RecordCreationTime; // yyyy-MM-dd ( Enforce This Please )
+
 
     @Override
     public String toString() {
@@ -252,14 +247,6 @@ public class ArchivalRecord {
         Format = format;
     }
 
-//    public String getCompressionType() {
-//        return CompressionType;
-//    }
-//
-//    public void setCompressionType(String compressionType) {
-//        CompressionType = compressionType;
-//    }
-
     public Double getSize_MB() {
         return Size_MB;
     }
@@ -324,22 +311,6 @@ public class ArchivalRecord {
         Date_scanned = date_scanned;
     }
 
-//    public String getScanner_Notes() {
-//        return Scanner_Notes;
-//    }
-//
-//    public void setScanner_Notes(String scanner_Notes) {
-//        Scanner_Notes = scanner_Notes;
-//    }
-
-//    public String getAbstract() {
-//        return Abstract;
-//    }
-//
-//    public void setAbstract(String anAbstract) {
-//        Abstract = anAbstract;
-//    }
-
     public String getAccess_Copy_Number() {
         return Access_Copy_Number;
     }
@@ -372,11 +343,11 @@ public class ArchivalRecord {
         Artifact_MD5_Hash = artifact_MD5_Hash;
     }
 
-    public Date getRecordCreationTime() {
+    public String getRecordCreationTime() {
         return RecordCreationTime;
     }
 
-    public void setRecordCreationTime(Date recordCreationTime) {
+    public void setRecordCreationTime(String recordCreationTime) {
         RecordCreationTime = recordCreationTime;
     }
 
@@ -387,15 +358,6 @@ public class ArchivalRecord {
     public void setItemNumber(String itemNumber) {
         this.itemNumber = itemNumber;
     }
-
-//    public String getGeneric_Column_3() {
-//        return Generic_Column_3;
-//    }
-//
-//    public void setGeneric_Column_3(String generic_Column_3) {
-//        Generic_Column_3 = generic_Column_3;
-//    }
-
 
 }
 

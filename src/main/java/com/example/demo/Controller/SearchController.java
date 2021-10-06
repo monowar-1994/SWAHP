@@ -28,7 +28,7 @@ public class SearchController {
 
     @PostMapping("/byID")
     public ModelAndView getSearchedItembyId(@RequestParam("item_id") String itemID){
-        ModelAndView modelAndView = new ModelAndView("showindividualrecord");
+        ModelAndView modelAndView = new ModelAndView("showSingleArchiveRecord");
         String itemId = itemID.trim();
         Long queryId;
         if(itemId.length()==0){
@@ -57,7 +57,7 @@ public class SearchController {
 
     @PostMapping("/byItemNumber")
     public ModelAndView getSearchedItembyItemNumber(@RequestParam("item_number") String itemNumber){
-        ModelAndView modelAndView = new ModelAndView("showindividualrecord");
+        ModelAndView modelAndView = new ModelAndView("showSingleArchiveRecord");
         String queryNumber = itemNumber.trim();
         if(queryNumber.length() == 0){
             modelAndView.addObject("Status","NotFound");
@@ -87,7 +87,7 @@ public class SearchController {
 
     @PostMapping("/byTitleKeyword")
     public ModelAndView getSearchedItemByKeywordInTitleAndTags(@RequestParam("search_keyword") String keyWord){
-        ModelAndView modelAndView = new ModelAndView("showrecords");
+        ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
         List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInTitleAndTags(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;
@@ -96,7 +96,7 @@ public class SearchController {
 
     @PostMapping("/bySummaryAndNotes")
     public ModelAndView getSearchedItemByKeywordInSummaryAndNotes(@RequestParam("search_keyword") String keyWord){
-        ModelAndView modelAndView = new ModelAndView("showrecords");
+        ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
         List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInSummaryAndNotes(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;
@@ -104,7 +104,7 @@ public class SearchController {
 
     @PostMapping("/byTypeAndGenre")
     public ModelAndView getSearchedItemByKeywordInTypeAndGenre(@RequestParam("search_keyword") String keyWord){
-        ModelAndView modelAndView = new ModelAndView("showrecords");
+        ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
         List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInTypeAndGenre(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;
@@ -112,7 +112,7 @@ public class SearchController {
 
     @PostMapping("/byContributorsAndCopyright")
     public ModelAndView getSearchedItemByKeywordInContributorsAndCopyright(@RequestParam("search_keyword") String keyWord){
-        ModelAndView modelAndView = new ModelAndView("showrecords");
+        ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
         List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInContributionAndCopyright(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;

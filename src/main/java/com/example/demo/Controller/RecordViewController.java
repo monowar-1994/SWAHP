@@ -29,7 +29,7 @@ public class RecordViewController {
 
     @GetMapping("/getrecord")
     public ModelAndView getRecord(@RequestParam(name="recordID") String recordID){
-        ModelAndView modelAndView = new ModelAndView("showindividualrecord");
+        ModelAndView modelAndView = new ModelAndView("showSingleArchiveRecord");
 
         Long queryID;
 
@@ -56,7 +56,7 @@ public class RecordViewController {
     public ModelAndView getPaginatedRecords(@PathVariable (value = "pageNo") int pageNumber,
                                             @RequestParam("sortField") Optional<String> sortField,
                                             @RequestParam("sortDirection") Optional<String>  direction){
-        ModelAndView modelAndView = new ModelAndView("showrecords");
+        ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
         int pageSize = 15;
         Page<ArchivalRecord> page = recordFetchingService.findPaginatedDataRecords(pageNumber,pageSize,
                 sortField.isEmpty()?null: sortField.get(),

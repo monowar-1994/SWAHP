@@ -86,35 +86,6 @@
             }
         });
     });
-
-    // function doSubmit(e) {
-    //     //e.preventDefault();
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open("post", e.target.action);
-    //     // xhr.onload = function() {
-    //     //     if(!xhr.status == 200) {
-    //     //         document.getElementById('result').innerText="Error "+xhr.status+": "+xhr.statusText;
-    //     //     } else {
-    //     //
-    //     //         document.body = event.target.response;
-    //     //
-    //     //         alert("Success, server responded with: " + event.target.response);
-    //     //     }
-    //     // }
-    //     // xhr.upload.onprogress = function(evt) {
-    //     //     document.getElementById('sent').firstChild.nodeValue=evt.loaded;
-    //     //     if(evt.lengthComputable) {
-    //     //         document.getElementById('total').firstChild.nodeValue=evt.total;
-    //     //     }
-    //     // }
-    //     // xhr.onerror = function() {
-    //     //     document.getElementById('result').innerText="Unknown error";
-    //     // }
-    //
-    //     xhr.setRequestHeader('X-Large-Upload','1');
-    //     xhr.send(new FormData(e.target));
-    //
-    // }
 </script>
 
 <div id="wrapper">
@@ -168,7 +139,7 @@
             <form class="form-horizontal"
                   method="post"
                   enctype="multipart/form-data"
-                  action="/submitrecord/submitinformation"
+                  action="/submitrecord/submitinformation/archive"
                   th:object="${dataRecordFormEntity}">
 
                 <div class="form-group">

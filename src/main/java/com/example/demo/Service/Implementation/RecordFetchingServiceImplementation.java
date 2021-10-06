@@ -1,7 +1,7 @@
 package com.example.demo.Service.Implementation;
 
 import com.example.demo.Model.ArchivalRecord;
-import com.example.demo.Repository.RecordRepository;
+import com.example.demo.Repository.ArchiveRecordRepository;
 import com.example.demo.Service.RecordFetchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,21 +16,21 @@ import java.util.*;
 public class RecordFetchingServiceImplementation implements RecordFetchingService {
 
     @Autowired
-    private RecordRepository recordRepository;
+    private ArchiveRecordRepository archiveRecordRepository;
 
     @Override
     public Iterable<ArchivalRecord> fetchAllRecord() {
-        return recordRepository.findAll();
+        return archiveRecordRepository.findAll();
     }
 
     @Override
     public Optional<ArchivalRecord> fetchRecord(Long id) {
-        return recordRepository.findById(id);
+        return archiveRecordRepository.findById(id);
     }
 
     @Override
     public ArchivalRecord saveEditedRecord(ArchivalRecord editedRecord) {
-        return recordRepository.save(editedRecord);
+        return archiveRecordRepository.save(editedRecord);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
         if(titleKeyword.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
-        return recordRepository.fetchRecordByKeywordInTitleAndTags(titleKeyword);
+        return archiveRecordRepository.fetchRecordByKeywordInTitleAndTags(titleKeyword);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
         if(keyWord.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
-        return recordRepository.fetchRecordByKeywordSummaryAndNotes(keyWord);
+        return archiveRecordRepository.fetchRecordByKeywordSummaryAndNotes(keyWord);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
         if(keyWord.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
-        return recordRepository.fetchRecordByKeywordTypeAndGenre(keyWord);
+        return archiveRecordRepository.fetchRecordByKeywordTypeAndGenre(keyWord);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
         if(keyWord.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
-        return recordRepository.fetchRecordByKeywordInContributorAndCopyright(keyWord);
+        return archiveRecordRepository.fetchRecordByKeywordInContributorAndCopyright(keyWord);
     }
 
     @Override
@@ -80,12 +80,12 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
             pageable = PageRequest.of(pageNo-1, pageSize);
         }
 
-        return recordRepository.findAll(pageable);
+        return archiveRecordRepository.findAll(pageable);
     }
 
     @Override
     public Optional<ArchivalRecord> fetchRecordByItemNumber(String itemNumber) {
-        return recordRepository.fetchRecordByItemNumber(itemNumber);
+        return archiveRecordRepository.fetchRecordByItemNumber(itemNumber);
     }
 
 }
