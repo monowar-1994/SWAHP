@@ -191,21 +191,22 @@
             <form class="form-horizontal"
                   method="post"
                   enctype="multipart/form-data"
-                  action="/submitrecord/submitinformation/archive"
+                  action="/submitrecord/submitinformation/newsmedia"
                   th:object="${dataRecordFormEntity}">
 
                 <div class="form-group">
-                    <label for="Title">Item Number:</label>
+                    <label for="ItemNumber">Item Number:</label>
                     <div>
-                        <input type="text" th:field="*{archivalRecord.itemNumber}"
-                               id="ItemNumber" placeholder="Enter Item Number" name="ItemNumber" maxlength="255" required>
+                        <input type="text" th:field="*{newsMediaRecord.itemNumber}"
+                               id="ItemNumber" placeholder="Enter Item Number"
+                               name="ItemNumber" maxlength="255" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Title">Title:</label>
                     <div>
-                        <input type="text" th:field="*{archivalRecord.title}"
+                        <input type="text" th:field="*{newsMediaRecord.title}"
                                id="Title" placeholder="Enter Title" name="Title"  required maxlength="255">
                     </div>
                 </div>
@@ -213,180 +214,102 @@
                 <div class="form-group">
                     <label for="Language">Language:</label>
                     <div>
-                        <input type="text" th:field="*{archivalRecord.language}"
+                        <input type="text" th:field="*{newsMediaRecord.language}"
                                id="Language" placeholder="Enter Language" name="Language" maxlength="128">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Summary">Summary:</label>
+                    <label for="Summary">Abstract:</label>
                     <div>
-                        <input type="text" th:field="*{archivalRecord.summary}"
-                               id="Summary" placeholder="Enter Summary (255 Characters)" name="Summary" required maxlength="255">
+                        <input type="text" th:field="*{newsMediaRecord.summary}"
+                               id="Summary" placeholder="Enter Abstract (1000 Characters)" name="Summary" required maxlength="1000">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Original_Created">Originally created on:</label>
                     <div>
-                        <input type="date" th:field="*{archivalRecord.original_Created}"
-                               id="Original_Created" placeholder="Enter Creation Date" name="Original_Created">
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="Original_Date_Description">Original Date Description:</label>
-                    <div >
-                        <input type="text" th:field="*{archivalRecord.original_Date_Description}"
-                               id="Original_Date_Description" placeholder="Enter Original_Date_Description"
-                               name="Original_Date_Description" maxlength="255">
+                        <input type="text" th:field="*{newsMediaRecord.dateOriginalCreated}"
+                               id="Original_Created" placeholder="Enter Original Creation Date" name="dateOriginalCreated">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Type">Type:</label>
+                    <label for="dateCaptured">Date Captured:</label>
                     <div >
-                        <input type="text" th:field="*{archivalRecord.type}"
-                               id="Type" placeholder="Enter Type (100 Characters)" name="Type">
+                        <input type="text" th:field="*{newsMediaRecord.dateCaptured}"
+                               id="dateCaptured" placeholder="Enter Date Captured" name="dateCaptured">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label  for="Genre">Genre:</label>
+                    <label  for="Genre">Genre of Item:</label>
                     <div >
-                        <input type="text"  th:field="*{archivalRecord.genre}"
-                               id="Genre" placeholder="Enter Category (100 Characters)" name="Genre" maxlength="100">
+                        <input type="text"  th:field="*{newsMediaRecord.genreOfItem}"
+                               id="Genre" placeholder="Enter Genre of Item (100 Characters)"
+                               name="Genre" maxlength="100">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Place">Place:</label>
+                    <label for="Author">Author:</label>
                     <div >
-                        <input type="text" th:field="*{archivalRecord.place}"
-                               id="Place" placeholder="Enter Place (255 Characters)" name="Place" maxlength="255">
+                        <input type="text" th:field="*{newsMediaRecord.author}"
+                               id="Author" placeholder="Enter Author (255 Characters)"
+                               name="Author" maxlength="255">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label  for="Creator">Creator:</label>
+                    <label for="publicationTitle">Publication Title:</label>
                     <div >
-                        <input type="text" th:field="*{archivalRecord.creator}"
-                               id="Creator" placeholder="Enter Creator (255 Characters)" name="Creator" maxlength="255">
+                        <input type="text" th:field="*{newsMediaRecord.publicationTitle}"
+                               id="publicationTitle" placeholder="Enter Publication Title (1000 Characters)"
+                               name="publicationTitle" maxlength="1000">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Contributors">Contributors:</label>
+                    <label for="place">Place:</label>
                     <div >
-                        <input type="text" th:field="*{archivalRecord.contributors}"
-                               id="Contributors" placeholder="Enter Contributors (255 Characters)" name="Contributors" maxlength="255">
+                        <input type="text" th:field="*{newsMediaRecord.place}"
+                               id="place" placeholder="Enter Place (255 Characters). Include only city name unless located outside of Cda or the US. If based elsewhere, include city name, comma, followed by country name. (e.x. Paris, France.)"
+                               name="place" maxlength="255">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label  for="Copyright">Copyright:</label>
+                    <label for="section">Section:</label>
                     <div >
-                        <input type="text" th:field="*{archivalRecord.copyright}"
-                               id="Copyright" placeholder="Enter Copyright (255 Characters)" name="Copyright" maxlength="255">
+                        <input type="text" th:field="*{newsMediaRecord.section}"
+                               id="section" placeholder="Enter Section (255 Characters). "
+                               name="section" maxlength="255">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Collection">Collection:</label>
+                    <label for="pages">Pages:</label>
                     <div >
-                        <input type="text" th:field="*{archivalRecord.collection}"
-                               id="Collection" placeholder="Enter Collection Name (255 Characters)" name="Collection">
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="Notes">The Story:</label>
-                    <div >
-                        <textarea class="input_notes" type="text" th:field="*{archivalRecord.notes}"
-                                  id="Notes" placeholder="Enter Notes (10000 Characters)" name="Notes" maxlength="9999"></textarea>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="Keywords">Tags:</label>
-                    <div >
-                        <input type="text" th:field="*{archivalRecord.keywords}"
-                               id="Keywords" placeholder="Enter Keywords (100 Characters). Separate Them by Commas." name="Keywords" maxlength="100">
+                        <input type="text" th:field="*{newsMediaRecord.pages}"
+                               id="pages" placeholder="Enter pages (255 Characters). "
+                               name="pages" maxlength="255">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Format">Format:</label>
+                    <label for="rights">Rights:</label>
                     <div >
-                        <input type="text" th:field="*{archivalRecord.format}"
-                               id="Format" placeholder="Enter Format (Tiff, Jpeg) etc. " name="Format" maxlength="20">
+                        <input type="text" th:field="*{newsMediaRecord.rights}"
+                               id="rights" placeholder="Enter Rights." name="rights" maxlength="255">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Size_MB">Size_MB:</label>
+                    <label for="url">URL:</label>
                     <div >
-                        <input type="number" th:field="*{archivalRecord.size_MB}"
-                               id="Size_MB" placeholder="Enter Size in MegaBytes" name="Size_MB" step="any">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="Pixel_width">Pixel width:</label>
-                    <div >
-                        <input type="number"th:field="*{archivalRecord.pixel_width}"
-                               id="Pixel_width" placeholder="Enter Pixel width in Integer" name="Pixel_width">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="Pixel_height">Pixel height</label>
-                    <div >
-                        <input type="number" th:field="*{archivalRecord.pixel_height}"
-                               id="Pixel_height" placeholder="Enter Pixel height in Integer" name="Pixel_height">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="Resolution">Resolution</label>
-                    <div >
-                        <input type="number" th:field="*{archivalRecord.resolution}"
-                               id="Resolution" placeholder="Enter Resolution in Integer" name="Resolution">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label  for="Bit_depth">Bit depth</label>
-                    <div >
-                        <input type="number"  th:field="*{archivalRecord.bit_depth}"
-                               id="Bit_depth" placeholder="Enter Bit depth in Integer" name="Bit_depth">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label  for="Color_GreyScale">Colour/GreyScale</label>
-                    <div >
-                        <input type="text" th:field="*{archivalRecord.color_GreyScale}"
-                               id="Color_GreyScale" placeholder="Enter 'Colour' Or 'Grayscale'" name="Color_GreyScale">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="PageCount">Page Count</label>
-                    <div >
-                        <input type="number" th:field="*{archivalRecord.pageCount}"
-                               id="PageCount" placeholder="Enter Page Count in the object" name="PageCount">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="Date_scanned">Date_scanned</label>
-                    <div >
-                        <input type="date" th:field="*{archivalRecord.date_scanned}"
-                               id="Date_scanned" placeholder="Enter the date you scanned this" name="Date_scanned">
+                        <input type="text" th:field="*{newsMediaRecord.url}"
+                               id="url" placeholder="Enter URL." name="url" maxlength="2048">
                     </div>
                 </div>
 

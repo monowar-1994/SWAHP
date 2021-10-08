@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Contact</title>
+    <title>Upload Result</title>
     <meta name="description" content="A description of your website">
     <meta name="keywords" content="keyword1, keyword2, keyword3">
     <link th:href="@{/css/homepagestyle.css}" rel="stylesheet" type="text/css">
@@ -107,19 +107,27 @@
         </div>
 
         <div class="right_section">
+            <div class="common_content">
 
-            <h2>Site Administrator and Developer</h2>
-            <p> Md. Monowar Anjum <br/> Email 1: anjumm1@myumanitoba.ca <br/> Email 2: monowar.a.1205022@gmail.com <br/>
-            Email 3: monowaranjum@gmail.com <br/> Cell: +1-204-297-0070 <br/> Office: Data Security and Privacy Lab, EITC-2,
-                University of Manitoba.
-            </p>
+                <div th:if="${status} == 'FAILED'">
+                    <h2>Record Creation and Artifact Upload Failed.
+                        Error Code: <span th:text="${status_code}"></span> </h2>
+                </div>
 
+                <div th:if="${status} == 'SUCCESS'">
+                    <h2>Record Creation and Artifact Upload Success.</h2><br/>
 
-        </div>
+                    <!--            <h4>Click <a th:text="${result.getItemNumber()}" th:href="@{/view/getrecord(recordID=${result.getId()})}" /> to see the record.</h4>-->
 
-        <div class="clear"></div>
+                </div>
 
-        <div id="footer">Copyright &copy; 2014. Design by <a href="http://www.htmltemplates.net/" target="_blank">HTML Templates</a><br>
+            </div>
+
+            <div class="clear"></div>
+
+            <div id="footer">Copyright &copy; 2014. Design by <a href="http://www.htmltemplates.net/" target="_blank">HTML Templates</a><br>
+
+            </div>
 
         </div>
 

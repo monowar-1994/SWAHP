@@ -37,6 +37,44 @@
       box-sizing: border-box;
     }
 
+
+
+     .dropbtn {
+       /*background-color: #04AA6D;*/
+       color: white;
+       padding: 16px;
+       /*font-size: 16px;*/
+       border: none;
+     }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #212b2d;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #dd0000;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
   </style>
 
 </head>
@@ -55,8 +93,22 @@
       <ul>
         <li><a th:href="@{/homepage}">Home</a></li>
         <li><a th:href="@{/contact}">Contact</a></li>
-        <li><a th:href="@{/view/getrecords(sortField='ItemNumber', sortDirection='asc')}">View Records</a></li>
-        <li><a th:href="@{/submitrecord/informationform}">Upload Single Record</a></li>
+        <li>
+          <div class="dropdown">
+            <a class="dropbtn">
+              View Records
+            </a>
+
+            <div class="dropdown-content">
+              <a th:href="@{/view/getrecords(sortField='ItemNumber', sortDirection='asc')}">Archive</a>
+              <a href="#">Website</a>
+              <a href="#">News Media</a>
+              <a href="#">Bibliography</a>
+            </div>
+          </div>
+
+        </li>
+        <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
         <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
         <li><a th:href="@{/edit}">Edit Record</a></li>
       </ul>

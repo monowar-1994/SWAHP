@@ -8,7 +8,10 @@ public class DataRecordFormEntity {
 
     public ArchivalRecord archivalRecord;
     public WebsiteRecord websiteRecord;
+    public NewsMediaRecord newsMediaRecord;
+    public BibliographicRecord bibliographicRecord;
     public MultipartFile artifactFile;
+
 
     public WebsiteRecord getWebsiteRecord() {
         return websiteRecord;
@@ -34,6 +37,22 @@ public class DataRecordFormEntity {
         this.artifactFile = artifactFile;
     }
 
+    public NewsMediaRecord getNewsMediaRecord() {
+        return newsMediaRecord;
+    }
+
+    public void setNewsMediaRecord(NewsMediaRecord newsMediaRecord) {
+        this.newsMediaRecord = newsMediaRecord;
+    }
+
+    public BibliographicRecord getBibliographicRecord() {
+        return bibliographicRecord;
+    }
+
+    public void setBibliographicRecord(BibliographicRecord bibliographicRecord) {
+        this.bibliographicRecord = bibliographicRecord;
+    }
+
     public String getType() {
         return type;
     }
@@ -42,8 +61,12 @@ public class DataRecordFormEntity {
         this.type = type;
     }
 
+
+
     public DataRecordFormEntity(){
         archivalRecord = new ArchivalRecord();
         websiteRecord = new WebsiteRecord();
+        newsMediaRecord = new NewsMediaRecord();
+        bibliographicRecord = new BibliographicRecord();
     }
 }

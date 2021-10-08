@@ -68,6 +68,43 @@
             box-sizing: border-box;
         }
 
+
+         .dropbtn {
+             /*background-color: #04AA6D;*/
+             color: white;
+             padding: 16px;
+             /*font-size: 16px;*/
+             border: none;
+         }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #212b2d;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #dd0000;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
     </style>
 
 
@@ -101,8 +138,22 @@
             <ul>
                 <li><a th:href="@{/homepage}">Home</a></li>
                 <li><a th:href="@{/contact}">Contact</a></li>
-                <li><a th:href="@{/view/getrecords(sortField='ItemNumber', sortDirection='asc')}">View Records</a></li>
-                <li><a th:href="@{/submitrecord/informationform}">Upload Single Record</a></li>
+                <li>
+                    <div class="dropdown">
+                        <a class="dropbtn">
+                            View Records
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a th:href="@{/view/getrecords(sortField='ItemNumber', sortDirection='asc')}">Archive</a>
+                            <a href="#">Website</a>
+                            <a href="#">News Media</a>
+                            <a href="#">Bibliography</a>
+                        </div>
+                    </div>
+
+                </li>
+                <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
                 <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
                 <li><a th:href="@{/edit}">Edit Record</a></li>
             </ul>
@@ -143,10 +194,11 @@
                   th:object="${dataRecordFormEntity}">
 
                 <div class="form-group">
-                    <label for="Title">Item Number:</label>
+                    <label for="ItemNumber">Item Number:</label>
                     <div>
                         <input type="text" th:field="*{websiteRecord.itemNumber}"
-                               id="ItemNumber" placeholder="Enter Item Number" name="ItemNumber" maxlength="255" required>
+                               id="ItemNumber" placeholder="Enter Item Number"
+                               name="ItemNumber" maxlength="255" required>
                     </div>
                 </div>
 
@@ -194,7 +246,7 @@
                     <label  for="Genre">Genre of Item:</label>
                     <div >
                         <input type="text"  th:field="*{websiteRecord.genreOfItem}"
-                               id="Genre" placeholder="Enter Category (100 Characters)"
+                               id="Genre" placeholder="Enter Genre of Item (100 Characters)"
                                name="Genre" maxlength="100">
                     </div>
                 </div>
@@ -204,7 +256,7 @@
                     <div >
                         <input type="text" th:field="*{websiteRecord.creator}"
                                id="Creator" placeholder="Enter Creator (255 Characters)"
-                               name="Place" maxlength="255">
+                               name="Creator" maxlength="255">
                     </div>
                 </div>
 
@@ -237,7 +289,7 @@
                     <label for="rights">Rights:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.rights}"
-                               id="rights" placeholder="Enter Rights." name="alsoKnownAs" maxlength="255">
+                               id="rights" placeholder="Enter Rights." name="rights" maxlength="255">
                     </div>
                 </div>
 
@@ -245,12 +297,9 @@
                     <label for="url">URL:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.url}"
-                               id="url" placeholder="Enter URL." name="alsoKnownAs" maxlength="2048">
+                               id="url" placeholder="Enter URL." name="url" maxlength="2048">
                     </div>
                 </div>
-
-
-
 
 
                 <div>
