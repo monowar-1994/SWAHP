@@ -49,7 +49,7 @@ public class RecordEditController {
         Optional<ArchivalRecord> record;
 
         try{
-            record = recordFetchingService.fetchRecord(id);
+            record = recordFetchingService.fetchArchiveRecord(id);
 
             if(record.isEmpty()){
                 formModelAndView.addObject("Status","FAIL");
@@ -69,7 +69,7 @@ public class RecordEditController {
 
     @PostMapping("/request")
     public ModelAndView editRecordAndConfirm(@ModelAttribute("record") ArchivalRecord editedRecord){
-        ArchivalRecord postEditRecord = recordFetchingService.saveEditedRecord(editedRecord);
+        ArchivalRecord postEditRecord = recordFetchingService.saveEditedArchiveRecord(editedRecord);
         ModelAndView editRecordRequestResultView = new ModelAndView("editRecordRequestResult");
         if(postEditRecord == null){
             editRecordRequestResultView.addObject("Status","FAIL");
@@ -89,7 +89,7 @@ public class RecordEditController {
         String modelName = "recorddeleteresult";
 
         Long id = Long.parseLong(deleteId);
-        Optional<ArchivalRecord> recordToDelete =  recordFetchingService.fetchRecord(id);
+        Optional<ArchivalRecord> recordToDelete =  recordFetchingService.fetchArchiveRecord(id);
 
         boolean hasArtifactFile = true;
         String artifactFilePath = recordToDelete.get().getTiffFileLocation();

@@ -29,6 +29,7 @@ public class ArchivalRecord {
     private String Copyright;
     private String Collection;
     private String Subcollection;
+    @Lob
     @Column(length=10000)
     private String Notes;
     private String Keywords;

@@ -1,7 +1,13 @@
 package com.example.demo.Service.Implementation;
 
 import com.example.demo.Model.ArchivalRecord;
+import com.example.demo.Model.BibliographicRecord;
+import com.example.demo.Model.NewsMediaRecord;
+import com.example.demo.Model.WebsiteRecord;
 import com.example.demo.Repository.ArchiveRecordRepository;
+import com.example.demo.Repository.BibliographicRecordRepository;
+import com.example.demo.Repository.NewsMediaRecordRepository;
+import com.example.demo.Repository.WebsiteRecordRepository;
 import com.example.demo.Service.RecordFetchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +23,12 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
 
     @Autowired
     private ArchiveRecordRepository archiveRecordRepository;
+    @Autowired
+    private NewsMediaRecordRepository newsMediaRecordRepository;
+    @Autowired
+    private WebsiteRecordRepository websiteRecordRepository;
+    @Autowired
+    private BibliographicRecordRepository bibliographicRecordRepository;
 
     @Override
     public Iterable<ArchivalRecord> fetchAllRecord() {
@@ -24,17 +36,32 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
     }
 
     @Override
-    public Optional<ArchivalRecord> fetchRecord(Long id) {
+    public Optional<ArchivalRecord> fetchArchiveRecord(Long id) {
         return archiveRecordRepository.findById(id);
     }
 
     @Override
-    public ArchivalRecord saveEditedRecord(ArchivalRecord editedRecord) {
+    public Optional<WebsiteRecord> fetchWebsiteRecord(Long id) {
+        return websiteRecordRepository.findById(id);
+    }
+
+    @Override
+    public Optional<NewsMediaRecord> fetchNewsMediaRecord(Long id) {
+        return newsMediaRecordRepository.findById(id);
+    }
+
+    @Override
+    public Optional<BibliographicRecord> fetchBibliographicRecord(Long id) {
+        return bibliographicRecordRepository.findById(id);
+    }
+
+    @Override
+    public ArchivalRecord saveEditedArchiveRecord(ArchivalRecord editedRecord) {
         return archiveRecordRepository.save(editedRecord);
     }
 
     @Override
-    public List<ArchivalRecord> searchByKeywordInTitleAndTags(String titleKeyword) {
+    public List<ArchivalRecord> searchByKeywordInTitleAndTagsInArchive(String titleKeyword) {
         if(titleKeyword.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
@@ -42,7 +69,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
     }
 
     @Override
-    public List<ArchivalRecord> searchByKeywordInSummaryAndNotes(String keyWord) {
+    public List<ArchivalRecord> searchByKeywordInSummaryAndNotesInArchive(String keyWord) {
         if(keyWord.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
@@ -50,7 +77,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
     }
 
     @Override
-    public List<ArchivalRecord> searchByKeywordInTypeAndGenre(String keyWord) {
+    public List<ArchivalRecord> searchByKeywordInTypeAndGenreInArchive(String keyWord) {
         if(keyWord.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
@@ -58,7 +85,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
     }
 
     @Override
-    public List<ArchivalRecord> searchByKeywordInContributionAndCopyright(String keyWord) {
+    public List<ArchivalRecord> searchByKeywordInContributionAndCopyrightInArchive(String keyWord) {
         if(keyWord.length()==0){
             return new ArrayList<ArchivalRecord>();
         }
@@ -66,7 +93,99 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
     }
 
     @Override
-    public Page<ArchivalRecord> findPaginatedDataRecords(int pageNo, int pageSize, String sortField, String sortDirection) {
+    public Page<ArchivalRecord> findPaginatedRecordsInArchive(int pageNo, int pageSize, String sortField, String sortDirection) {
+//        Sort sort = null;
+//        Pageable pageable = null;
+//        if(sortField != null && sortDirection != null){
+//            sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+//                    Sort.by(sortField).descending();
+//        }
+//        if(sort != null){
+//            pageable = PageRequest.of(pageNo-1,pageSize, sort);
+//        }
+//        else{
+//            pageable = PageRequest.of(pageNo-1, pageSize);
+//        }
+
+        return archiveRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
+    }
+
+    @Override
+    public Page<NewsMediaRecord> findPaginatedRecordsInNewsMedia(int pageNo, int pageSize, String sortField, String sortDirection) {
+//        Sort sort = null;
+//        Pageable pageable = null;
+//        if(sortField != null && sortDirection != null){
+//            sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+//                    Sort.by(sortField).descending();
+//        }
+//        if(sort != null){
+//            pageable = PageRequest.of(pageNo-1,pageSize, sort);
+//        }
+//        else{
+//            pageable = PageRequest.of(pageNo-1, pageSize);
+//        }
+
+        return newsMediaRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
+    }
+
+    @Override
+    public Page<WebsiteRecord> findPaginatedRecordsInWebsite(int pageNo, int pageSize, String sortField, String sortDirection) {
+//        Sort sort = null;
+//        Pageable pageable = null;
+//        if(sortField != null && sortDirection != null){
+//            sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+//                    Sort.by(sortField).descending();
+//        }
+//        if(sort != null){
+//            pageable = PageRequest.of(pageNo-1,pageSize, sort);
+//        }
+//        else{
+//            pageable = PageRequest.of(pageNo-1, pageSize);
+//        }
+
+        return websiteRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
+    }
+
+    @Override
+    public Page<BibliographicRecord> findPaginatedRecordsInBibliography(int pageNo, int pageSize, String sortField, String sortDirection) {
+//        Sort sort = null;
+//        Pageable pageable = null;
+//        if(sortField != null && sortDirection != null){
+//            sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+//                    Sort.by(sortField).descending();
+//        }
+//        if(sort != null){
+//            pageable = PageRequest.of(pageNo-1,pageSize, sort);
+//        }
+//        else{
+//            pageable = PageRequest.of(pageNo-1, pageSize);
+//        }
+
+
+        return bibliographicRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
+    }
+
+    @Override
+    public Optional<ArchivalRecord> fetchRecordByItemNumberInArchive(String itemNumber) {
+        return archiveRecordRepository.fetchRecordByItemNumber(itemNumber);
+    }
+
+    @Override
+    public Optional<WebsiteRecord> fetchRecordByItemNumberInWebsite(String itemNumber) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<NewsMediaRecord> fetchRecordByItemNumberInNewsMedia(String itemNumber) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<BibliographicRecord> fetchRecordByItemNumberInBibliography(String itemNumber) {
+        return Optional.empty();
+    }
+
+    public Pageable getPageSettings(int pageNo, int pageSize, String sortField, String sortDirection){
         Sort sort = null;
         Pageable pageable = null;
         if(sortField != null && sortDirection != null){
@@ -79,13 +198,7 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
         else{
             pageable = PageRequest.of(pageNo-1, pageSize);
         }
-
-        return archiveRecordRepository.findAll(pageable);
-    }
-
-    @Override
-    public Optional<ArchivalRecord> fetchRecordByItemNumber(String itemNumber) {
-        return archiveRecordRepository.fetchRecordByItemNumber(itemNumber);
+        return pageable;
     }
 
 }

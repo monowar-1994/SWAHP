@@ -99,10 +99,11 @@
                         </a>
 
                         <div class="dropdown-content">
-                            <a th:href="@{/view/getrecords(sortField='ItemNumber', sortDirection='asc')}">Archive</a>
-                            <a href="#">Website</a>
-                            <a href="#">News Media</a>
-                            <a href="#">Bibliography</a>
+                            <!--                      <a th:href="@{/view/getrecords(sortField='ItemNumber', sortDirection='asc')}">Archive</a>-->
+                            <a th:href="@{/view/getrecords/archive/page/1}">Archive</a>
+                            <a th:href="@{/view/getrecords/website/page/1}">Website</a>
+                            <a th:href="@{/view/getrecords/newsmedia/page/1}">News Media</a>
+                            <a th:href="@{/view/getrecords/bibliography/page/1}">Bibliography</a>
                         </div>
                     </div>
 

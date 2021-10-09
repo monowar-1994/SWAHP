@@ -2,12 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Upload Result</title>
+    <title>View Records</title>
     <meta name="description" content="A description of your website">
     <meta name="keywords" content="keyword1, keyword2, keyword3">
     <link th:href="@{/css/homepagestyle.css}" rel="stylesheet" type="text/css">
 
     <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button2 {background-color: #008CBA;} /* Blue */
+        .button3 {background-color: #f44336;} /* Red */
+        .button4 {background-color: #e7e7e7; color: black;} /* Gray */
+        .button5 {background-color: #555555;} /* Black */
+
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
 
         .dropbtn {
             /*background-color: #04AA6D;*/
@@ -43,7 +73,10 @@
         .dropdown:hover .dropdown-content {display: block;}
 
         .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
     </style>
+
 </head>
 <body>
 
@@ -107,17 +140,45 @@
         </div>
 
         <div class="right_section">
-            <div class="common_content">
+            <div class="table_content">
+                <table>
+                    <thead>
+                    <tr>
+                        <th th:width="50px"> Item Number </th>
+                        <th th:width="200px"> Title </th>
+                        <th th:width="350px"> Abstract </th>
+                        <th th:width="150px"> Originally Created </th>
 
-                <div th:if="${status} == 'FAILED'">
-                    <h2>Record Creation and Artifact Upload Failed.
-                        Error Code: <span th:text="${status_code}"></span> </h2>
-                </div>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="record : ${records}">
+                        <td><a th:text="${record.getItemNumber()}" th:href="@{/view/getrecord/bibliography(recordID=${record.getId()})}"> </a></td>
+                        <td><span th:text="${record.getTitle()}"> Title </span></td>
+                        <td><span th:text="${record.getSummary()}"> Abstract </span></td>
+                        <td><span th:if="${record.getDateOriginalCreated() != null}" th:text="${record.getDateOriginalCreated()}"> Originally Created </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                <div th:if="${status} == 'SUCCESS'">
-                    <h2>Record Creation and Artifact Upload Success.</h2><br/>
-                    <h4>Click <a th:text="${result}" th:href="@{/view/getrecord/newsmedia(recordID=${result})}" /> to see the record.</h4>
-                </div>
+            <div style="position: relative">
+                <form style="float: left" th:method="get" th:action="@{/view/getrecords/bibliography/page/1}">
+                    <button type="submit" class="button">First Page</button>
+                </form>
+
+                <form style="float: left" th:method="get"
+                      th:action="@{ ${currentPage>1? '/view/getrecords/bibliography/page/__${currentPage-1}__': ''}}">
+                    <button type="submit" class="button">Previous Page</button>
+                </form>
+
+                <form style="float: right" th:method="get" th:action="@{/view/getrecords/bibliography/page/__${totalPages}__}">
+                    <button type="submit" class="button">Last Page</button>
+                </form>
+
+                <form style="float: right" th:method="get" th:action="@{${currentPage<totalPages? '/view/getrecords/bibliography/page/__${currentPage+1}__': ''}}">
+                    <button type="submit" class="button">Next Page</button>
+                </form>
 
             </div>
 
@@ -130,7 +191,6 @@
         </div>
 
     </div>
-
 </div>
-
-</body></html>
+</body>
+</html>

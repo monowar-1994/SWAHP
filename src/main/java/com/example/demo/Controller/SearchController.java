@@ -28,7 +28,7 @@ public class SearchController {
 
     @PostMapping("/byID")
     public ModelAndView getSearchedItembyId(@RequestParam("item_id") String itemID){
-        ModelAndView modelAndView = new ModelAndView("showSingleArchiveRecord");
+        ModelAndView modelAndView = new ModelAndView("showArchiveRecord");
         String itemId = itemID.trim();
         Long queryId;
         if(itemId.length()==0){
@@ -37,7 +37,7 @@ public class SearchController {
         else{
             try{
                 queryId = Long.parseLong(itemId);
-                Optional<ArchivalRecord> matchedRecord = recordFetchingService.fetchRecord(queryId);
+                Optional<ArchivalRecord> matchedRecord = recordFetchingService.fetchArchiveRecord(queryId);
                 if(matchedRecord.isEmpty()){
                     modelAndView.addObject("Status","NotFound");
                     System.out.println("Did not find the record");
@@ -57,14 +57,14 @@ public class SearchController {
 
     @PostMapping("/byItemNumber")
     public ModelAndView getSearchedItembyItemNumber(@RequestParam("item_number") String itemNumber){
-        ModelAndView modelAndView = new ModelAndView("showSingleArchiveRecord");
+        ModelAndView modelAndView = new ModelAndView("showArchiveRecord");
         String queryNumber = itemNumber.trim();
         if(queryNumber.length() == 0){
             modelAndView.addObject("Status","NotFound");
         }
         else{
             try{
-                Optional<ArchivalRecord> matchedRecord =  recordFetchingService.fetchRecordByItemNumber(queryNumber);
+                Optional<ArchivalRecord> matchedRecord =  recordFetchingService.fetchRecordByItemNumberInArchive(queryNumber);
                 if(!matchedRecord.isEmpty()){
                     modelAndView.addObject("Status","Found");
                     modelAndView.addObject("resultRecord", matchedRecord.get());
@@ -88,7 +88,7 @@ public class SearchController {
     @PostMapping("/byTitleKeyword")
     public ModelAndView getSearchedItemByKeywordInTitleAndTags(@RequestParam("search_keyword") String keyWord){
         ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
-        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInTitleAndTags(keyWord.trim());
+        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInTitleAndTagsInArchive(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;
     }
@@ -97,7 +97,7 @@ public class SearchController {
     @PostMapping("/bySummaryAndNotes")
     public ModelAndView getSearchedItemByKeywordInSummaryAndNotes(@RequestParam("search_keyword") String keyWord){
         ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
-        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInSummaryAndNotes(keyWord.trim());
+        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInSummaryAndNotesInArchive(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;
     }
@@ -105,7 +105,7 @@ public class SearchController {
     @PostMapping("/byTypeAndGenre")
     public ModelAndView getSearchedItemByKeywordInTypeAndGenre(@RequestParam("search_keyword") String keyWord){
         ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
-        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInTypeAndGenre(keyWord.trim());
+        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInTypeAndGenreInArchive(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;
     }
@@ -113,7 +113,7 @@ public class SearchController {
     @PostMapping("/byContributorsAndCopyright")
     public ModelAndView getSearchedItemByKeywordInContributorsAndCopyright(@RequestParam("search_keyword") String keyWord){
         ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
-        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInContributionAndCopyright(keyWord.trim());
+        List<ArchivalRecord> matchedRecords = recordFetchingService.searchByKeywordInContributionAndCopyrightInArchive(keyWord.trim());
         modelAndView.addObject("records",matchedRecords);
         return modelAndView;
     }

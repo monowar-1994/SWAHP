@@ -1,6 +1,9 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.ArchivalRecord;
+import com.example.demo.Model.BibliographicRecord;
+import com.example.demo.Model.NewsMediaRecord;
+import com.example.demo.Model.WebsiteRecord;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -10,19 +13,37 @@ public interface RecordFetchingService {
 
     Iterable<ArchivalRecord> fetchAllRecord();
 
-    Optional<ArchivalRecord> fetchRecord(Long id);
+    Optional<ArchivalRecord> fetchArchiveRecord(Long id);
 
-    ArchivalRecord saveEditedRecord(ArchivalRecord editedRecord);
+    Optional<WebsiteRecord> fetchWebsiteRecord(Long id);
 
-    List<ArchivalRecord> searchByKeywordInTitleAndTags(String titleKeyword);
+    Optional<NewsMediaRecord> fetchNewsMediaRecord(Long id);
 
-    List<ArchivalRecord> searchByKeywordInSummaryAndNotes(String keyWord);
+    Optional<BibliographicRecord> fetchBibliographicRecord(Long id);
 
-    List<ArchivalRecord> searchByKeywordInTypeAndGenre(String keyWord);
+    ArchivalRecord saveEditedArchiveRecord(ArchivalRecord editedRecord);
 
-    List<ArchivalRecord> searchByKeywordInContributionAndCopyright(String keyWord);
+    List<ArchivalRecord> searchByKeywordInTitleAndTagsInArchive(String titleKeyword);
 
-    Page<ArchivalRecord> findPaginatedDataRecords(int pageNo, int pageSize, String sortField, String sortDirection);
+    List<ArchivalRecord> searchByKeywordInSummaryAndNotesInArchive(String keyWord);
 
-    Optional<ArchivalRecord> fetchRecordByItemNumber(String itemNumber);
+    List<ArchivalRecord> searchByKeywordInTypeAndGenreInArchive(String keyWord);
+
+    List<ArchivalRecord> searchByKeywordInContributionAndCopyrightInArchive(String keyWord);
+
+    Page<ArchivalRecord> findPaginatedRecordsInArchive(int pageNo, int pageSize, String sortField, String sortDirection);
+
+    Page<NewsMediaRecord> findPaginatedRecordsInNewsMedia(int pageNo, int pageSize, String sortField, String sortDirection);
+
+    Page<WebsiteRecord> findPaginatedRecordsInWebsite(int pageNo, int pageSize, String sortField, String sortDirection);
+
+    Page<BibliographicRecord> findPaginatedRecordsInBibliography(int pageNo, int pageSize, String sortField, String sortDirection);
+
+    Optional<ArchivalRecord> fetchRecordByItemNumberInArchive(String itemNumber);
+
+    Optional<WebsiteRecord> fetchRecordByItemNumberInWebsite(String itemNumber);
+
+    Optional<NewsMediaRecord> fetchRecordByItemNumberInNewsMedia(String itemNumber);
+
+    Optional<BibliographicRecord> fetchRecordByItemNumberInBibliography(String itemNumber);
 }

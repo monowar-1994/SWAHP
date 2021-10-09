@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edited Record</title>
+    <title>Detailed Information</title>
     <meta name="description" content="A description of your website">
     <meta name="keywords" content="keyword1, keyword2, keyword3">
     <link th:href="@{/css/homepagestyle.css}" rel="stylesheet" type="text/css">
+
 
     <style>
         .button {
@@ -63,14 +64,13 @@
         }
 
 
-
-         .dropbtn {
-             /*background-color: #04AA6D;*/
-             color: white;
-             padding: 16px;
-             /*font-size: 16px;*/
-             border: none;
-         }
+        .dropbtn {
+            /*background-color: #04AA6D;*/
+            color: white;
+            padding: 16px;
+            /*font-size: 16px;*/
+            border: none;
+        }
 
         .dropdown {
             position: relative;
@@ -94,13 +94,11 @@
         }
 
         .dropdown-content a:hover {background-color: #dd0000;}
-
         .dropdown:hover .dropdown-content {display: block;}
-
         .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-
     </style>
+
+
 
 </head>
 <body>
@@ -148,14 +146,15 @@
 
             <div class="col_1">
                 <h1> <a th:href="@{/search/queryForm}"> Search Archive &#128269;</a></h1>
-<!--                <div class="box">-->
-<!--                    <ul>-->
-<!--                        <li><a th:href="@{/search/queryForm}">Search with Item Number</a></li>-->
-<!--                        <li><a th:href="@{/search/queryForm}">Search Between Date-Range</a></li>-->
-<!--                        <li><a th:href="@{/search/queryForm}">Search with Keyword</a></li>-->
-<!--                        <li><a th:href="@{/search/queryForm}">Search with Partial Title</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
+                <!--        <div class="box">-->
+                <!--          <ul>-->
+                <!--            <li><a th:href="@{/search/queryForm}">Search with Item Number</a></li>-->
+                <!--            <li><a th:href="@{/search/queryForm}">Search Between Date-Range</a></li>-->
+                <!--            <li><a th:href="@{/search/queryForm}">Search with Keyword</a></li>-->
+                <!--            <li><a th:href="@{/search/queryForm}">Search with Partial Title</a></li>-->
+                <!--          </ul>-->
+                <!--          -->
+                <!--        </div>-->
             </div>
 
             <div class="col_1">
@@ -173,19 +172,25 @@
         </div>
 
         <div class="right_section">
-            <div class="common_content">
 
-                <div th:if="${Status} == 'FAIL'"> Error occurred, please  contact administrator.</div>
-                <div th:if="${Status} == 'SUCCESS'">
-                    <h2 style="margin-top: 20px"><span style="margin: 20px auto" th:text="${resultRecord.getItemNumber()}"></span></h2>
-                    <table>
+            <div th:if="${Status}=='NotFound'"> Could not find the record with the specified ID </div>
+
+            <div th:if="${Status}=='Found'">
+
+
+                <h2 style="margin-top: 20px"><span style="margin: 20px auto" th:text="${resultRecord.getItemNumber()}"></span></h2>
+
+                <div>
+                    <table style="margin: 40px auto" id="detail_description" >
+
                         <thead>
                         <tr>
-                            <th width="15%"> Field </th>
-                            <th width="85%"> Content </th>
+                            <th width="200px"> Field </th>
+                            <th width="600px"> Content </th>
                         </tr>
                         </thead>
                         <tbody>
+
                         <tr>
                             <td>ID</td>
                             <td><span th:text="${resultRecord.getId()}"/></td>
@@ -194,6 +199,7 @@
                             <td>Item Number</td>
                             <td><span th:text="${resultRecord.getItemNumber()}"/></td>
                         </tr>
+
                         <tr>
                             <td>Title</td>
                             <td><span th:text="${resultRecord.getTitle()}"/></td>
@@ -203,137 +209,90 @@
                             <td><span th:text="${resultRecord.getLanguage()}"/></td>
                         </tr>
                         <tr>
-                            <td>Summary</td>
+                            <td>Abstract</td>
                             <td><span th:text="${resultRecord.getSummary()}"/></td>
                         </tr>
                         <tr>
-                            <td>Originally Created</td>
-                            <td><span th:if="${resultRecord.getOriginal_Created() != null}" th:text="${resultRecord.getOriginal_Created().toGMTString().substring(0,11)}"/></td>
+                            <td>Date Original Created</td>
+                            <td><span th:text="${resultRecord.getDateOriginalCreated()}"/></td>
                         </tr>
                         <tr>
-                            <td>Original Date Description</td>
-                            <td><span th:text="${resultRecord.getOriginal_Date_Description()}"/></td>
+                            <td>Date Captured</td>
+                            <td><span th:text="${resultRecord.getDateCaptured()}"/></td>
                         </tr>
                         <tr>
-                            <td>Type</td>
-                            <td><span th:text="${resultRecord.getType()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Genre</td>
-                            <td><span th:text="${resultRecord.getGenre()}"/></td>
-                        </tr>
-<!--                        <tr>-->
-<!--                            <td>People</td>-->
-<!--                            <td><span th:text="${resultRecord.getPeople()}"/></td>-->
-<!--                        </tr>-->
-                        <tr>
-                            <td>Place</td>
-                            <td><span th:text="${resultRecord.getPlace()}"/></td>
+                            <td>Genre of Item</td>
+                            <td><span th:text="${resultRecord.getGenreOfItem()}"/></td>
                         </tr>
                         <tr>
                             <td>Creator</td>
                             <td><span th:text="${resultRecord.getCreator()}"/></td>
                         </tr>
                         <tr>
-                            <td>Contributors</td>
-                            <td><span th:text="${resultRecord.getContributors()}"/></td>
+                            <td>Collection</td>
+                            <td><span th:text="${resultRecord.getCollection()}"/></td>
                         </tr>
                         <tr>
-                            <td>Notes</td>
-                            <td><span th:text="${resultRecord.getNotes()}"/></td>
+                            <td>Also Known As</td>
+                            <td><span th:text="${resultRecord.getAlsoKnownAs()}"/></td>
                         </tr>
                         <tr>
-                            <td>Keywords</td>
-                            <td><span th:text="${resultRecord.getKeywords()}"/></td>
+                            <td>Tags</td>
+                            <td><span th:text="${resultRecord.getTags()}"/></td>
                         </tr>
                         <tr>
-                            <td>Format</td>
-                            <td><span th:text="${resultRecord.getFormat()}"/></td>
+                            <td>Rights</td>
+                            <td><span th:text="${resultRecord.getRights()}"/></td>
                         </tr>
                         <tr>
-                            <td>Size (In Megabytes)</td>
-                            <td><span th:text="${resultRecord.getSize_MB()}"/></td>
+                            <td>url</td>
+                            <td><span th:text="${resultRecord.getUrl()}"/></td>
                         </tr>
                         <tr>
-                            <td>Pixel Width</td>
-                            <td><span th:text="${resultRecord.getPixel_width()}"/></td>
+                            <td>Artifact File</td>
+                            <td><a th:text="${resultRecord.getArtifactFileName()}"
+                                   th:href="@{/download/byLoc(fileLocation=${resultRecord.getArtifactFileLocation()})}"
+                                   target="_blank"/></td>
                         </tr>
                         <tr>
-                            <td>Pixel Height</td>
-                            <td><span th:text="${resultRecord.getPixel_height()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Resolution</td>
-                            <td><span th:text="${resultRecord.getResolution()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Bit Depth</td>
-                            <td><span th:text="${resultRecord.getBit_depth()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Color or Grayscale</td>
-                            <td><span th:text="${resultRecord.getColor_GreyScale()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Page Count</td>
-                            <td><span th:text="${resultRecord.getPageCount()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Date Scanned</td>
-                            <td><span th:text="${resultRecord.getDate_scanned()}"/></td>
-                        </tr>
-<!--                        <tr>-->
-<!--                            <td>Scanner Notes</td>-->
-<!--                            <td><span th:text="${resultRecord.getScanner_Notes()}"/></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>Abstract</td>-->
-<!--                            <td><span th:text="${resultRecord.getAbstract()}"/></td>-->
-<!--                        </tr>-->
-                        <tr>
-                            <td>Artifact File Name</td>
-                            <td><a th:text="${resultRecord.getTiffFileName()}"
-                                   th:href="@{/download/byLoc(fileLocation=${resultRecord.getTiffFileLocation()})}" target="_blank"/></td>
-                        </tr>
-
-                        <tr>
-                            <td>Access File Location</td>
-                            <td><a th:text="${resultRecord.getPdfFileLocation()}"
-                                   th:href="@{/download/byLoc(fileLocation=${resultRecord.getPdfFileLocation()})}" target="_blank"/></td>
+                            <td>Access File</td>
+                            <td><a th:text="${resultRecord.getAccessFileLocation()}"
+                                   th:href="@{/download/byLoc(fileLocation=${resultRecord.getAccessFileLocation()})}"
+                                   target="_blank"/></td>
                         </tr>
                         <tr>
                             <td>Preservation Hash</td>
-                            <td><span th:text="${resultRecord.getArtifact_MD5_Hash()}"/></td>
+                            <td><span th:text="${resultRecord.getPreservationHash()}"/></td>
                         </tr>
-<!--                        <tr>-->
-<!--                            <td>Artifact File Location</td>-->
-<!--                            <td><span th:text="${resultRecord.getTiffFileLocation()}"/></td>-->
-<!--                        </tr>-->
-
+                        <tr>
+                            <td>Creation Time</td>
+                            <td><span th:text="${resultRecord.getCreationTime()}"/></td>
+                        </tr>
                         </tbody>
                     </table>
+
                     <span style="justify-content: center"><a class="button_centred" th:href="@{/edit/byId(recordID=${resultRecord.getId()})}"> Edit This Record</a></span>
 
                     <form style="justify-content: center;"  th:method="post" th:action="@{/edit/delete(id=${resultRecord.getId()})}">
                         <button type="submit" class="button3">Delete This Record</button>
                     </form>
+
                 </div>
 
 
-
-
             </div>
+
+
 
             <div class="clear"></div>
 
-            <div id="footer">Copyright &copy; 2014. Design by <a href="http://www.htmltemplates.net/" target="_blank">HTML Templates</a><br>
-
+            <div id="footer">
+                Copyright &copy; 2014. Design by <a href="http://www.htmltemplates.net/" target="_blank">HTML Templates</a><br>
             </div>
 
         </div>
-
     </div>
-
 </div>
 
-</body></html>
+</body>
+</html>
