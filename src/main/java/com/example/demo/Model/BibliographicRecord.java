@@ -1,6 +1,9 @@
 package com.example.demo.Model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class BibliographicRecord {
@@ -12,7 +15,8 @@ public class BibliographicRecord {
     public String language;
     @Column(length = 1000)
     public String summary; // Please name it abstract in the UI.
-    public String dateOriginalCreated;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date dateOriginalCreated;
     public String dateAdded;
     public String genreOfItem;
     public String author;
@@ -30,12 +34,16 @@ public class BibliographicRecord {
     public String rights;
     @Column(length = 2048)
     public String url;
+    public String collection;
+    @Column(length = 512)
+    public String tags;
 
     public String artifactFileName;
     public String artifactFileLocation;
     public String accessFileLocation;
     public String preservationHash;
-    public String creationTime;
+    public String creationTime; // yyyy-MM-dd ( Enforce This in UI Please )
+    public String lastModifiedTime; // yyyy-MM-dd ( Enforce This in UI Please )
 
     public Long getId() {
         return id;
@@ -77,11 +85,11 @@ public class BibliographicRecord {
         this.summary = summary;
     }
 
-    public String getDateOriginalCreated() {
+    public Date getDateOriginalCreated() {
         return dateOriginalCreated;
     }
 
-    public void setDateOriginalCreated(String dateOriginalCreated) {
+    public void setDateOriginalCreated(Date dateOriginalCreated) {
         this.dateOriginalCreated = dateOriginalCreated;
     }
 
@@ -235,5 +243,29 @@ public class BibliographicRecord {
 
     public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
+    }
+
+    public String getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    public void setLastModifiedTime(String lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }

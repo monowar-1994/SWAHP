@@ -6,6 +6,7 @@ import com.example.demo.Model.NewsMediaRecord;
 import com.example.demo.Model.WebsiteRecord;
 import com.example.demo.Service.RecordFetchingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/view")
 public class RecordViewController {
+
+    @Value("${pageentrycount}")
+    int pageEntryCount;
 
     @Autowired
     private RecordFetchingService recordFetchingService;
@@ -44,6 +48,7 @@ public class RecordViewController {
             }
             else{
                 modelAndView.addObject("Status","Found");
+                modelAndView.addObject("type","archive");
                 modelAndView.addObject("resultRecord", matchedRecord.get());
                 //System.out.println("Got the record");
             }
@@ -67,6 +72,7 @@ public class RecordViewController {
             }
             else{
                 modelAndView.addObject("Status","Found");
+                modelAndView.addObject("type","newsmedia");
                 modelAndView.addObject("resultRecord", matchedRecord.get());
                 //System.out.println("Got the NewsMedia record");
             }
@@ -90,6 +96,7 @@ public class RecordViewController {
             }
             else{
                 modelAndView.addObject("Status","Found");
+                modelAndView.addObject("type","website");
                 modelAndView.addObject("resultRecord", matchedRecord.get());
                 //System.out.println("Got the NewsMedia record");
             }
@@ -113,6 +120,7 @@ public class RecordViewController {
             }
             else{
                 modelAndView.addObject("Status","Found");
+                modelAndView.addObject("type","bibliography");
                 modelAndView.addObject("resultRecord", matchedRecord.get());
                 //System.out.println("Got the NewsMedia record");
             }
@@ -128,7 +136,7 @@ public class RecordViewController {
                                                     @RequestParam("sortField") Optional<String> sortField,
                                                     @RequestParam("sortDirection") Optional<String>  direction){
         ModelAndView modelAndView = new ModelAndView("showAllArchiveRecords");
-        int pageSize = 15;
+        int pageSize = pageEntryCount;
         Page<ArchivalRecord> page = recordFetchingService.findPaginatedRecordsInArchive(pageNumber,pageSize,
                 sortField.isEmpty()?null: sortField.get(),
                 direction.isEmpty()?null:direction.get());
@@ -150,7 +158,7 @@ public class RecordViewController {
                                                     @RequestParam("sortField") Optional<String> sortField,
                                                     @RequestParam("sortDirection") Optional<String>  direction){
         ModelAndView modelAndView = new ModelAndView("showAllNewsMediaRecords");
-        int pageSize = 15;
+        int pageSize = pageEntryCount;
         Page<NewsMediaRecord> page = recordFetchingService.findPaginatedRecordsInNewsMedia(pageNumber,pageSize,
                 sortField.isEmpty()?null: sortField.get(),
                 direction.isEmpty()?null:direction.get());
@@ -170,7 +178,7 @@ public class RecordViewController {
                                                    @RequestParam("sortField") Optional<String> sortField,
                                                    @RequestParam("sortDirection") Optional<String>  direction){
         ModelAndView modelAndView = new ModelAndView("showAllWebsiteRecords");
-        int pageSize = 15;
+        int pageSize = pageEntryCount;
         Page<WebsiteRecord> page = recordFetchingService.findPaginatedRecordsInWebsite(pageNumber,pageSize,
                 sortField.isEmpty()?null: sortField.get(),
                 direction.isEmpty()?null:direction.get());
@@ -190,7 +198,7 @@ public class RecordViewController {
                                                    @RequestParam("sortField") Optional<String> sortField,
                                                    @RequestParam("sortDirection") Optional<String>  direction){
         ModelAndView modelAndView = new ModelAndView("showAllBibliographicRecords");
-        int pageSize = 15;
+        int pageSize = pageEntryCount;
         Page<BibliographicRecord> page = recordFetchingService.findPaginatedRecordsInBibliography(pageNumber,pageSize,
                 sortField.isEmpty()?null: sortField.get(),
                 direction.isEmpty()?null:direction.get());

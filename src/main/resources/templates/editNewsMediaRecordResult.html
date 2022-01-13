@@ -177,9 +177,9 @@
 
         <div class="right_section">
 
-            <div th:if="${Status}=='NotFound'"> Could not find the record with the specified ID </div>
+            <div th:if="${Status}=='FAIL'"> Could not find the record with the specified ID </div>
 
-            <div th:if="${Status}=='Found'">
+            <div th:if="${Status}=='SUCCESS'">
 
 
                 <h2 style="margin-top: 20px"><span style="margin: 20px auto" th:text="${resultRecord.getItemNumber()}"></span></h2>
@@ -234,14 +234,6 @@
                             <td><span th:text="${resultRecord.getAuthor()}"/></td>
                         </tr>
                         <tr>
-                            <td>Collection</td>
-                            <td><span th:text="${resultRecord.getCollection()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Tags</td>
-                            <td><span th:text="${resultRecord.getTags()}"/></td>
-                        </tr>
-                        <tr>
                             <td>Publication Title</td>
                             <td><span th:text="${resultRecord.getPublicationTitle()}"/></td>
                         </tr>
@@ -294,13 +286,8 @@
 
                     <span style="justify-content: center"><a class="button_centred" th:href="@{/edit/newsmedia/byId(recordID=${resultRecord.getId()},recordType=${type})}"> Edit This Record</a></span>
 
-                    <form style="justify-content: center;"
-                          th:method="post"
-                          th:action="@{/edit/delete(id=${resultRecord.getId()},recordType=${type})}">
-                        <button type="submit" class="button3"
-                                onclick="return confirm('Are you sure you want to delete this item?');">
-                            Delete This Record
-                        </button>
+                    <form style="justify-content: center;"  th:method="post" th:action="@{/edit/delete(id=${resultRecord.getId()},recordType=${type})}">
+                        <button type="submit" class="button3">Delete This Record</button>
                     </form>
 
                 </div>

@@ -147,42 +147,39 @@
                         <th th:width="50px"> Item Number </th>
                         <th th:width="200px"> Title </th>
                         <th th:width="350px"> Abstract </th>
-                        <th th:width="100px"> Originally Created </th>
-                        <th th:width="100px"> Collection</th>
+                        <th th:width="150px"> Originally Created </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="record : ${records}">
-                        <td><a th:text="${record.getItemNumber()}" th:href="@{/view/getrecord/website(recordID=${record.getId()})}"> </a></td>
+                        <td><a th:text="${record.getItemNumber()}" th:href="@{/view/getrecord/newsmedia(recordID=${record.getId()})}"> </a></td>
                         <td><span th:text="${record.getTitle()}"> Title </span></td>
                         <td><span th:text="${record.getSummary()}"> Abstract </span></td>
-                        <td><span th:if="${record.getDateOriginalCreated() != null}"
-                                  th:text="${ record.getDateOriginalCreated().toGMTString().substring(0,11)}"> Originally Created </span></td>
-                        <td><span th:text="${record.getCollection()}"> Collection </span></td>
+                        <td><span th:if="${record.getDateOriginalCreated() != null}" th:text="${record.getDateOriginalCreated()}"> Originally Created </span></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div style="position: relative">
-                <form style="float: left" th:method="get" th:action="@{/view/getrecords/website/page/1}">
-                    <button type="submit" class="button">First Page</button>
-                </form>
+<!--            <div style="position: relative">-->
+<!--                <form style="float: left" th:method="get" th:action="@{/view/getrecords/newsmedia/page/1}">-->
+<!--                    <button type="submit" class="button">First Page</button>-->
+<!--                </form>-->
 
-                <form style="float: left" th:method="get"
-                      th:action="@{ ${currentPage>1? '/view/getrecords/website/page/__${currentPage-1}__': ''}}">
-                    <button type="submit" class="button">Previous Page</button>
-                </form>
+<!--                <form style="float: left" th:method="get"-->
+<!--                      th:action="@{ ${currentPage>1? '/view/getrecords/newsmedia/page/__${currentPage-1}__': ''}}">-->
+<!--                    <button type="submit" class="button">Previous Page</button>-->
+<!--                </form>-->
 
-                <form style="float: right" th:method="get" th:action="@{/view/getrecords/website/page/__${totalPages}__}">
-                    <button type="submit" class="button">Last Page</button>
-                </form>
+<!--                <form style="float: right" th:method="get" th:action="@{/view/getrecords/newsmedia/page/__${totalPages}__}">-->
+<!--                    <button type="submit" class="button">Last Page</button>-->
+<!--                </form>-->
 
-                <form style="float: right" th:method="get" th:action="@{${currentPage<totalPages? '/view/getrecords/website/page/__${currentPage+1}__': ''}}">
-                    <button type="submit" class="button">Next Page</button>
-                </form>
+<!--                <form style="float: right" th:method="get" th:action="@{${currentPage<totalPages? '/view/getrecords/newsmedia/page/__${currentPage+1}__': ''}}">-->
+<!--                    <button type="submit" class="button">Next Page</button>-->
+<!--                </form>-->
 
-            </div>
+<!--            </div>-->
 
             <div class="clear"></div>
 

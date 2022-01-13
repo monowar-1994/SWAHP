@@ -1,7 +1,10 @@
 package com.example.demo.Model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class WebsiteRecord {
@@ -12,13 +15,16 @@ public class WebsiteRecord {
     public String itemNumber;
     public String title;
     public String language;
-    public String dateOriginalCreated;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date dateOriginalCreated;
+    @Column(length = 1000)
     public String summary;
     public String dateCaptured;
     public String genreOfItem;
     public String creator;
     public String collection;
     public String alsoKnownAs;
+    @Column(length = 512)
     public String tags;
     public String rights;
     @Column(length = 2048)
@@ -28,7 +34,17 @@ public class WebsiteRecord {
     public String artifactFileLocation;
     public String accessFileLocation;
     public String preservationHash;
-    public String creationTime; // Format (yyyy-MM-dd)
+    public String creationTime; // yyyy-MM-dd ( Enforce This in UI Please )
+
+    public String getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    public void setLastModifiedTime(String lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    public String lastModifiedTime;  // yyyy-MM-dd ( Enforce This in UI Please )
 
     public String getSummary() {
         return summary;
@@ -70,11 +86,11 @@ public class WebsiteRecord {
         this.language = language;
     }
 
-    public String getDateOriginalCreated() {
+    public Date getDateOriginalCreated() {
         return dateOriginalCreated;
     }
 
-    public void setDateOriginalCreated(String dateOriginalCreated) {
+    public void setDateOriginalCreated(Date dateOriginalCreated) {
         this.dateOriginalCreated = dateOriginalCreated;
     }
 

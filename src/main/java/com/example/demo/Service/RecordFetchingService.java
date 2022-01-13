@@ -23,6 +23,12 @@ public interface RecordFetchingService {
 
     ArchivalRecord saveEditedArchiveRecord(ArchivalRecord editedRecord);
 
+    NewsMediaRecord saveEditedNewsMediaRecord(NewsMediaRecord editedRecord);
+
+    BibliographicRecord saveEditedBibliographicRecord(BibliographicRecord editedRecord);
+
+    WebsiteRecord saveEditedWebsiteRecord(WebsiteRecord editedRecord);
+
     List<ArchivalRecord> searchByKeywordInTitleAndTagsInArchive(String titleKeyword);
 
     List<ArchivalRecord> searchByKeywordInSummaryAndNotesInArchive(String keyWord);
@@ -46,4 +52,28 @@ public interface RecordFetchingService {
     Optional<NewsMediaRecord> fetchRecordByItemNumberInNewsMedia(String itemNumber);
 
     Optional<BibliographicRecord> fetchRecordByItemNumberInBibliography(String itemNumber);
+
+    List<WebsiteRecord> fetchWebsiteRecordByKeywordInAbstractAndTitle(String keyword);
+
+    List<WebsiteRecord> fetchWebsiteRecordByKeywordInCreatorAndCollection(String keyword);
+
+    List<WebsiteRecord> fetchWebsiteRecordByKeywordInTags(String keyword);
+
+    List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInTitleAndAbstract(String keyword);
+
+    List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInAuthor(String keyword);
+
+    List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInPublicationTitle(String keyword);
+
+    List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInPlaceAndSection(String keyword);
+
+    List<BibliographicRecord> fetchBibliographyRecordByKeywordInTitleAndAbstract(String keyword);
+
+    List<BibliographicRecord> fetchBibliographyRecordByKeywordInAuthor(String keyword);
+
+    List<BibliographicRecord> fetchBibliographicRecordByKeywordInPublicationTitle(String keyword);
+
+    List<BibliographicRecord> fetchBibliographicRecordByKeywordInPlaceAndPublication(String keyword);
+
+    List<BibliographicRecord> fetchBibliographicRecordByKeywordInAdditionalInformation(String keyword);
 }

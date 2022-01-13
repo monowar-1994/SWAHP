@@ -185,7 +185,7 @@
 
         <div class="right_section">
 
-            <h2>Create a record to insert in the database</h2>
+            <h2>Create a bibliography record to insert in the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -194,10 +194,10 @@
                   th:object="${dataRecordFormEntity}">
 
                 <div class="form-group">
-                    <label for="ItemNumber">Item Number:</label>
+                    <label for="ItemNumber">Item number:</label>
                     <div>
                         <input type="text" th:field="*{bibliographicRecord.itemNumber}"
-                               id="ItemNumber" placeholder="Enter Item Number"
+                               id="ItemNumber" placeholder="Enter Item number"
                                name="ItemNumber" maxlength="255" required>
                     </div>
                 </div>
@@ -228,27 +228,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Original_Created">Originally created on:</label>
+                    <label for="Original_Created">Date original created:</label>
                     <div>
-                        <input type="text" th:field="*{bibliographicRecord.dateOriginalCreated}"
-                               id="Original_Created" placeholder="Enter Original Creation Date"
+                        <input type="date" th:field="*{bibliographicRecord.dateOriginalCreated}"
+                               id="Original_Created" placeholder="Enter Date original created"
                                name="dateOriginalCreated">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="dateAdded">Date Added:</label>
+                    <label for="dateAdded">Date added:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.dateAdded}"
-                               id="dateAdded" placeholder="Enter Date Added" name="dateAdded">
+                               id="dateAdded" placeholder="Enter Date added" name="dateAdded">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label  for="Genre">Genre of Item:</label>
+                    <label  for="Genre">Genre of item:</label>
                     <div >
                         <input type="text"  th:field="*{bibliographicRecord.genreOfItem}"
-                               id="Genre" placeholder="Enter Genre of Item (100 Characters)"
+                               id="Genre" placeholder="Enter Genre of item (100 Characters)"
                                name="Genre" maxlength="100">
                     </div>
                 </div>
@@ -281,10 +281,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="publicationTitle">Publication Title:</label>
+                    <label for="publicationTitle">Publication title:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.publicationTitle}"
-                               id="publicationTitle" placeholder="Enter Publication Title (1000 Characters)"
+                               id="publicationTitle" placeholder="Enter Publication title (1000 Characters)"
                                name="publicationTitle" maxlength="1000">
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                     <label for="place">Place:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.place}"
-                               id="place" placeholder="Enter Place (255 Characters). Include only city name unless located outside of Cda or the US. If based elsewhere, include city name, comma, followed by country name. (e.x. Paris, France.)"
+                               id="place" placeholder="Enter Place (255 Characters)"
                                name="place" maxlength="255">
                     </div>
                 </div>
@@ -302,7 +302,7 @@
                     <label for="publisher">Publisher:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.publisher}"
-                               id="publisher" placeholder="Enter Publisher (255 Characters). "
+                               id="publisher" placeholder="Enter Publisher (255 Characters)"
                                name="publisher" maxlength="255">
                     </div>
                 </div>
@@ -311,7 +311,7 @@
                     <label for="volumeIssue">Volume/Issue:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.volumeOrIssue}"
-                               id="volumeIssue" placeholder="Enter Volume/Issue (255 Characters). "
+                               id="volumeIssue" placeholder="Enter Volume/Issue (255 Characters)"
                                name="volumeIssue" maxlength="255">
                     </div>
                 </div>
@@ -321,7 +321,7 @@
                     <label for="pages">Pages:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.pages}"
-                               id="pages" placeholder="Enter pages (255 Characters). "
+                               id="pages" placeholder="Enter Pages (255 Characters)"
                                name="pages" maxlength="255">
                     </div>
                 </div>
@@ -330,16 +330,16 @@
                     <label for="identifier">Identifier:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.identifier}"
-                               id="identifier" placeholder="Enter identifier (255 Characters). "
+                               id="identifier" placeholder="Enter identifier (255 Characters)"
                                name="identifier" maxlength="255">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="additionalInformation">Additional Information:</label>
+                    <label for="additionalInformation">Additional information:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.additionalInformation}"
-                               id="additionalInformation" placeholder="Enter additional information (2048 Characters). "
+                               id="additionalInformation" placeholder="Enter Additional information (2048 Characters)"
                                name="additionalInformation" maxlength="2048">
                     </div>
                 </div>
@@ -348,7 +348,7 @@
                     <label for="rights">Rights:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.rights}"
-                               id="rights" placeholder="Enter Rights." name="rights" maxlength="255">
+                               id="rights" placeholder="Enter Rights" name="rights" maxlength="255">
                     </div>
                 </div>
 
@@ -356,7 +356,23 @@
                     <label for="url">URL:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.url}"
-                               id="url" placeholder="Enter URL." name="url" maxlength="2048">
+                               id="url" placeholder="Enter URL" name="url" maxlength="2048">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="collection">Collection:</label>
+                    <div>
+                        <input type="text" th:field="*{bibliographicRecord.collection}"
+                               id="collection" placeholder="Enter Collection" name="collection" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags:</label>
+                    <div >
+                        <input type="text" th:field="*{bibliographicRecord.tags}"
+                               id="tags" placeholder="Enter Tags (500 characters). Separate them by comma and semi-colon" name="tags" maxlength="500">
                     </div>
                 </div>
 

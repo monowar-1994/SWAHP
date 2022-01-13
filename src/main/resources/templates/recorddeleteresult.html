@@ -116,7 +116,8 @@
 
                 <div th:if="${status} == 'SUCCESS'">
                     <h2>Record Delete Operation Successful.</h2><br/>
-                    <h4>Click <a th:href="@{/view/getrecords/page/1}" /> to go back to the record list page.</h4>
+<!--                    <h4>Click <a th:href="@{/view/getrecords/page/1}" /> to go back to the record list page.</h4>-->
+                    <h4>Click <a th:href="@{|/view/getrecords/${type}/page/1|}" /> to go back to the record list page.</h4>
                 </div>
 
             </div>

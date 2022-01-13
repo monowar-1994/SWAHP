@@ -102,7 +102,9 @@
 
   </style>
 
+  <script>
 
+  </script>
 
 </head>
 <body>
@@ -127,7 +129,6 @@
             </a>
 
             <div class="dropdown-content">
-              <!--                      <a th:href="@{/view/getrecords(sortField='ItemNumber', sortDirection='asc')}">Archive</a>-->
               <a th:href="@{/view/getrecords/archive/page/1}">Archive</a>
               <a th:href="@{/view/getrecords/website/page/1}">Website</a>
               <a th:href="@{/view/getrecords/newsmedia/page/1}">News Media</a>
@@ -200,10 +201,9 @@
               <td><span th:text="${resultRecord.getId()}"/></td>
             </tr>
             <tr>
-              <td>Item Number</td>
+              <td>Item number</td>
               <td><span th:text="${resultRecord.getItemNumber()}"/></td>
             </tr>
-
             <tr>
               <td>Title</td>
               <td><span th:text="${resultRecord.getTitle()}"/></td>
@@ -217,15 +217,16 @@
               <td><span th:text="${resultRecord.getSummary()}"/></td>
             </tr>
             <tr>
-              <td>Originally Created</td>
-              <td><span th:if="${resultRecord.getOriginal_Created() != null}" th:text="${resultRecord.getOriginal_Created().toGMTString().substring(0,11)}"/></td>
+              <td>Date original created</td>
+              <td><span th:if="${resultRecord.getOriginal_Created() != null}"
+                        th:text="${resultRecord.getOriginal_Created().toGMTString().substring(0,11)}"/></td>
             </tr>
             <tr>
-              <td>Original Date Description</td>
+              <td>Original date description</td>
               <td><span th:text="${resultRecord.getOriginal_Date_Description()}"/></td>
             </tr>
             <tr>
-              <td>Date Scanned</td>
+              <td>Date scanned/ photographed</td>
               <td><span th:text="${resultRecord.getDate_scanned()}"/></td>
             </tr>
             <tr>
@@ -233,10 +234,9 @@
               <td><span th:text="${resultRecord.getType()}"/></td>
             </tr>
             <tr>
-              <td>Genre</td>
+              <td>Genre of item</td>
               <td><span th:text="${resultRecord.getGenre()}"/></td>
             </tr>
-
             <tr>
               <td>Place</td>
               <td><span th:text="${resultRecord.getPlace()}"/></td>
@@ -254,7 +254,7 @@
               <td><span th:text="${resultRecord.getCollection()}"/></td>
             </tr>
             <tr>
-              <td>The Story</td>
+              <td>The story</td>
               <td><span th:text="${resultRecord.getNotes()}"/></td>
             </tr>
             <tr>
@@ -270,11 +270,11 @@
               <td><span th:text="${resultRecord.getSize_MB()}"/></td>
             </tr>
             <tr>
-              <td>Pixel Width</td>
+              <td>Pixel width</td>
               <td><span th:text="${resultRecord.getPixel_width()}"/></td>
             </tr>
             <tr>
-              <td>Pixel Height</td>
+              <td>Pixel height</td>
               <td><span th:text="${resultRecord.getPixel_height()}"/></td>
             </tr>
             <tr>
@@ -282,7 +282,7 @@
               <td><span th:text="${resultRecord.getResolution()}"/></td>
             </tr>
             <tr>
-              <td>Bit Depth</td>
+              <td>Bit depth</td>
               <td><span th:text="${resultRecord.getBit_depth()}"/></td>
             </tr>
             <tr>
@@ -290,31 +290,43 @@
               <td><span th:text="${resultRecord.getColor_GreyScale()}"/></td>
             </tr>
             <tr>
-              <td>Page Count</td>
+              <td>Page Count (# pages in one file)</td>
               <td><span th:text="${resultRecord.getPageCount()}"/></td>
             </tr>
             <tr>
-              <td>Artifact File Name</td>
+              <td>Artifact file name</td>
               <td><a th:text="${resultRecord.getTiffFileName()}"
                      th:href="@{/download/byLoc(fileLocation=${resultRecord.getTiffFileLocation()})}" target="_blank"/></td>
             </tr>
             <tr>
-              <td>Access File</td>
+              <td>Access file</td>
               <td><a th:text="${resultRecord.getPdfFileLocation()}"
                      th:href="@{/download/byLoc(fileLocation=${resultRecord.getPdfFileLocation()})}" target="_blank"/></td>
             </tr>
             <tr>
-              <td>Preservation Hash MD5</td>
+              <td>Preservation hash md5</td>
               <td><span th:text="${resultRecord.getArtifact_MD5_Hash()}"/></td>
+            </tr>
+            <tr>
+              <td>Created at</td>
+              <td><span th:text="${resultRecord.getRecordCreationTime()}"/></td>
+            </tr>
+            <tr>
+              <td>Updated at</td>
+              <td><span th:text="${resultRecord.getRecordModificationTime()}"/></td>
             </tr>
 
             </tbody>
           </table>
 
-            <span style="justify-content: center"><a class="button_centred" th:href="@{/edit/byId(recordID=${resultRecord.getId()})}"> Edit This Record</a></span>
+            <span style="justify-content: center">
+              <a class="button_centred" th:href="@{/edit/archive/byId(recordID=${resultRecord.getId()},recordType=${type})}">
+                Edit This Record
+              </a></span>
 
-            <form style="justify-content: center;"  th:method="post" th:action="@{/edit/delete(id=${resultRecord.getId()})}">
-              <button type="submit" class="button3">Delete This Record</button>
+            <form style="justify-content: center;"
+                  th:method="post" th:action="@{/edit/delete(id=${resultRecord.getId()},recordType=${type})}">
+              <button type="submit" class="button3" onclick="return confirm('Are you sure you want to delete this item?');">Delete This Record</button>
             </form>
 
           </div>

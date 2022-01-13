@@ -5,5 +5,11 @@ import org.springframework.stereotype.Service;
 
 
 public interface RecordDeletionService {
-    public boolean deleteRecordFromRepository(long id);
+    public boolean deleteArchiveRecordFromRepository(long id);
+
+    public boolean deleteWebsiteRecordFromRepository(long id);
+
+    public boolean deleteNewsMediaRecordFromRepository(long id);
+
+    public boolean deleteBibliographicRecordFromRepository(long id);
 }

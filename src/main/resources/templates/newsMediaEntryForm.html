@@ -187,7 +187,7 @@
 
         <div class="right_section">
 
-            <h2>Create a record to insert in the database</h2>
+            <h2>Create a news media record to insert in the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -196,7 +196,7 @@
                   th:object="${dataRecordFormEntity}">
 
                 <div class="form-group">
-                    <label for="ItemNumber">Item Number:</label>
+                    <label for="ItemNumber">Item number:</label>
                     <div>
                         <input type="text" th:field="*{newsMediaRecord.itemNumber}"
                                id="ItemNumber" placeholder="Enter Item Number"
@@ -229,26 +229,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Original_Created">Originally created on:</label>
+                    <label for="Original_Created">Date original created:</label>
                     <div>
-                        <input type="text" th:field="*{newsMediaRecord.dateOriginalCreated}"
+                        <input type="date" th:field="*{newsMediaRecord.dateOriginalCreated}"
                                id="Original_Created" placeholder="Enter Original Creation Date" name="dateOriginalCreated">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="dateCaptured">Date Captured:</label>
+                    <label for="dateCaptured">Date captured:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.dateCaptured}"
-                               id="dateCaptured" placeholder="Enter Date Captured" name="dateCaptured">
+                               id="dateCaptured" placeholder="Enter date captured" name="dateCaptured">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label  for="Genre">Genre of Item:</label>
+                    <label  for="Genre">Genre of item:</label>
                     <div >
                         <input type="text"  th:field="*{newsMediaRecord.genreOfItem}"
-                               id="Genre" placeholder="Enter Genre of Item (100 Characters)"
+                               id="Genre" placeholder="Enter genre of item (100 Characters)"
                                name="Genre" maxlength="100">
                     </div>
                 </div>
@@ -263,10 +263,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="publicationTitle">Publication Title:</label>
+                    <label for="publicationTitle">Publication title:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.publicationTitle}"
-                               id="publicationTitle" placeholder="Enter Publication Title (1000 Characters)"
+                               id="publicationTitle" placeholder="Enter publication title (1000 Characters)"
                                name="publicationTitle" maxlength="1000">
                     </div>
                 </div>
@@ -275,7 +275,7 @@
                     <label for="place">Place:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.place}"
-                               id="place" placeholder="Enter Place (255 Characters). Include only city name unless located outside of Cda or the US. If based elsewhere, include city name, comma, followed by country name. (e.x. Paris, France.)"
+                               id="place" placeholder="Enter Place (255 Characters)"
                                name="place" maxlength="255">
                     </div>
                 </div>
@@ -284,7 +284,7 @@
                     <label for="section">Section:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.section}"
-                               id="section" placeholder="Enter Section (255 Characters). "
+                               id="section" placeholder="Enter Section (255 Characters)"
                                name="section" maxlength="255">
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                     <label for="pages">Pages:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.pages}"
-                               id="pages" placeholder="Enter pages (255 Characters). "
+                               id="pages" placeholder="Enter pages (255 Characters)"
                                name="pages" maxlength="255">
                     </div>
                 </div>
@@ -310,7 +310,23 @@
                     <label for="url">URL:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.url}"
-                               id="url" placeholder="Enter URL." name="url" maxlength="2048">
+                               id="url" placeholder="Enter URL" name="url" maxlength="2048">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="collection">Collection:</label>
+                    <div >
+                        <input type="text" th:field="*{newsMediaRecord.collection}"
+                               id="collection" placeholder="Enter Collection" name="collection" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags:</label>
+                    <div >
+                        <input type="text" th:field="*{newsMediaRecord.tags}"
+                               id="tags" placeholder="Enter Tags (500 characters)" name="tags" maxlength="512">
                     </div>
                 </div>
 

@@ -15,7 +15,7 @@ public class ArchivalRecord {
     private String itemNumber;
     private String Title;
     private String Language;
-    @Column(length = 500)
+    @Column(length = 1000)
     private String Summary;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date Original_Created;
@@ -32,6 +32,7 @@ public class ArchivalRecord {
     @Lob
     @Column(length=10000)
     private String Notes;
+    @Column(length = 512)
     private String Keywords;
     private String Format;
     private Double Size_MB;
@@ -50,7 +51,8 @@ public class ArchivalRecord {
     private String tiffFileLocation;
     private String pdfFileLocation;
     private String Artifact_MD5_Hash;
-    private String RecordCreationTime; // yyyy-MM-dd ( Enforce This Please )
+    private String RecordCreationTime; // yyyy-MM-dd ( Enforce This in UI Please )
+    private String RecordModificationTime; // yyyy-MM-dd ( Enforce This in UI Please )
 
 
     @Override
@@ -360,5 +362,12 @@ public class ArchivalRecord {
         this.itemNumber = itemNumber;
     }
 
+    public String getRecordModificationTime() {
+        return RecordModificationTime;
+    }
+
+    public void setRecordModificationTime(String recordModificationTime) {
+        RecordModificationTime = recordModificationTime;
+    }
 }
 

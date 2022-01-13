@@ -77,6 +77,41 @@
 
     </style>
 
+    <script>
+        function getActions(selectObject) {
+            var value = selectObject.value;
+            if(value=='archive'){
+                console.log("Inside archive")
+                document.getElementById('archivalSearchFields').style.display='inline';
+                document.getElementById('websiteSearchFields').style.display='none';
+                document.getElementById('newsMediaSearchFields').style.display='none';
+                document.getElementById('bibliographicSearchFields').style.display='none';
+            }
+            else if(value=='website'){
+                console.log("Inside website")
+                document.getElementById('websiteSearchFields').style.display='inline';
+                document.getElementById('archivalSearchFields').style.display='none';
+                document.getElementById('bibliographicSearchFields').style.display='none';
+                document.getElementById('newsMediaSearchFields').style.display='none';
+            }
+            else if(value=='news'){
+                console.log("Inside news")
+                document.getElementById('newsMediaSearchFields').style.display='inline';
+                document.getElementById('archivalSearchFields').style.display='none';
+                document.getElementById('websiteSearchFields').style.display='none';
+                document.getElementById('bibliographicSearchFields').style.display='none';
+            }
+            else if(value == 'bibliography'){
+                console.log("Inside bibliography")
+                document.getElementById('newsMediaSearchFields').style.display='none';
+                document.getElementById('archivalSearchFields').style.display='none';
+                document.getElementById('websiteSearchFields').style.display='none';
+                document.getElementById('bibliographicSearchFields').style.display='inline';
+            }
+            //console.log(value);
+        }
+    </script>
+
 </head>
 
 <body>
@@ -142,128 +177,384 @@
         </div>
 
         <div class="right_section">
-            <div style="margin-bottom: 1.5cm;">
-                <h2>Search With Item Number</h2>
 
-                <div>
-                    <form method="post" enctype="multipart/form-data"
-                          action="/search/byItemNumber">
-                        <div>
-                            <input type="text" placeholder="Enter The item Number of the Item You are Looking for"
-                                   id="item_number" name="item_number" required>
-                        </div>
+            <div>
+                <select id="search_db" onchange="getActions(this)">
+                    <option value="">Select The Database You want to Search</option>
+                    <option value="archive">Archival Records</option>
+                    <option value="website">Website</option>
+                    <option value="news">News Media</option>
+                    <option value="bibliography">Bibliography</option>
+                </select>
 
-                        <div>
-                            <button type="submit" class="button">Submit</button>
-                        </div>
+            </div>
 
-                    </form>
+            <div id="archivalSearchFields" style="display: none">
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Item Number</h2>
+
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/byItemNumber">
+                            <div>
+                                <input type="text" placeholder="Enter The item Number of the Item You are Looking for"
+                                       id="item_number" name="item_number" required>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search Within Title and Tags (Keywords)</h2>
+
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/byTitleKeyword">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword You are searching for in Titles."
+                                       id="title_keyword" name="search_keyword" required>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword Within Summary and Notes</h2>
+
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/bySummaryAndNotes">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword You are searching for in Summary and Notes."
+                                       id="summary_keyword" name="search_keyword" required>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword Within Type And Genre</h2>
+
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/byTypeAndGenre">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword You are searching for in Type and Genre."
+                                       id="type_keyword" name="search_keyword" required>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword Within Creators, Contributors and Copyright</h2>
+
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/byContributorsAndCopyright">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword You are searching for in Type and Genre."
+                                       id="contributor_keyword" name="search_keyword" required>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
 
-<!--            <div style="margin-bottom: 1.5cm;">-->
-<!--                <h2>Search Between Date Range</h2>-->
+            <div id="websiteSearchFields" style="display: none">
 
-<!--                <div>-->
-<!--                    <form method="post" enctype="multipart/form-data"-->
-<!--                          action="/homepage">-->
-<!--                        <div style="margin-bottom: 0.5cm;">-->
-<!--                            <input type="date" placeholder="Enter The Start Date"-->
-<!--                                   id="start_date" name="start_date">-->
-<!--                        </div>-->
+                <div style="margin-bottom: 1.0cm; margin-top: 1.0cm">
+                    <h2>Search With Item Number</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/website/byItemNumber">
+                            <div>
+                                <input type="text" placeholder="Enter The item Number of the Item You are Looking for"
+                                       id="website_item_number" name="item_number" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
 
-<!--                        <div>-->
-<!--                            <input type="date" placeholder="Enter The End Date"-->
-<!--                                   id="end_date" name="end_date">-->
-<!--                        </div>-->
-
-<!--                        <div>-->
-<!--                            <button type="submit" class="button">Submit</button>-->
-<!--                        </div>-->
-
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-
-            <div style="margin-bottom: 1.5cm;">
-                <h2>Search Within Title and Tags (Keywords)</h2>
-
-                <div>
-                    <form method="post" enctype="multipart/form-data"
-                          action="/search/byTitleKeyword">
-                        <div>
-                            <input type="text" placeholder="Enter The Keyword You are searching for in Titles."
-                                   id="title_keyword" name="search_keyword" required>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="button">Submit</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Abstract and Title</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/website/byAbstractAndTitle">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Abstract and Title."
+                                       id="website_abstract_and_title" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Creator and Collection</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/website/byCreatorAndCollection">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Creators and Collections"
+                                       id="website_creator_and_collection" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Tags</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/website/byTags">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Tgas."
+                                       id="website_tags" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
             </div>
 
-            <div style="margin-bottom: 1.5cm;">
-                <h2>Search With Keyword Within Summary and Notes</h2>
+            <div id="newsMediaSearchFields" style="display: none">
+                <div style="margin-bottom: 1.5cm;margin-top: 1.0cm">
+                    <h2>Search With Item Number</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/newsmedia/byItemNumber">
+                            <div>
+                                <input type="text" placeholder="Enter The item Number of the Item You are Looking for"
+                                       id="newsmedia_item_number" name="item_number" required>
+                            </div>
 
-                <div>
-                    <form method="post" enctype="multipart/form-data"
-                          action="/search/bySummaryAndNotes">
-                        <div>
-                            <input type="text" placeholder="Enter The Keyword You are searching for in Summary and Notes."
-                                   id="summary_keyword" name="search_keyword" required>
-                        </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
 
-                        <div>
-                            <button type="submit" class="button">Submit</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Title and Abstract</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/newsmedia/byTitleAndAbstract">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Title and Abstract."
+                                       id="newsmedia_title_and_abstracts" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Author</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/newsmedia/byAuthor">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Author."
+                                       id="author" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Publication Title</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/newsmedia/byPublicationTitle">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Publication Title."
+                                       id="pub_title" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Place and Section</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/newsmedia/byPlaceAndSection">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Place and Section."
+                                       id="place_and_section" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
             </div>
 
+            <div id="bibliographicSearchFields" style="display: none">
+                <div style="margin-bottom: 1.5cm;margin-top: 1.0cm">
+                    <h2>Search With Item Number</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/bibliography/byItemNumber">
+                            <div>
+                                <input type="text" placeholder="Enter The item Number of the Item You are Looking for"
+                                       id="bibliography_item_number" name="item_number" required>
+                            </div>
 
-            <div style="margin-bottom: 1.5cm;">
-                <h2>Search With Keyword Within Type And Genre</h2>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
 
-                <div>
-                    <form method="post" enctype="multipart/form-data"
-                          action="/search/byTypeAndGenre">
-                        <div>
-                            <input type="text" placeholder="Enter The Keyword You are searching for in Type and Genre."
-                                   id="type_keyword" name="search_keyword" required>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="button">Submit</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Title And Abstract</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/bibliography/byTitleAndAbstract">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Title and Abstract."
+                                       id="title_and_abstract" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
 
-            <div style="margin-bottom: 1.5cm;">
-                <h2>Search With Keyword Within Creators, Contributors and Copyright</h2>
-
-                <div>
-                    <form method="post" enctype="multipart/form-data"
-                          action="/search/byContributorsAndCopyright">
-                        <div>
-                            <input type="text" placeholder="Enter The Keyword You are searching for in Type and Genre."
-                                   id="contributor_keyword" name="search_keyword" required>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="button">Submit</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Author</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/bibliography/byAuthor">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Authors."
+                                       id="author_name" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Publication Title</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/bibliography/byPublicationTitle">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Publication Title."
+                                       id="publication_title" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Place and Publisher</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/bibliography/byPlaceAndPublication">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Place and Publisher."
+                                       id="place_and_publisher" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+                <div style="margin-bottom: 1.5cm;">
+                    <h2>Search With Keyword in Additional Information</h2>
+                    <div>
+                        <form method="post" enctype="multipart/form-data"
+                              action="/search/bibliography/byAdditionalInformation">
+                            <div>
+                                <input type="text" placeholder="Enter The Keyword of the Item You are Looking for. Keyword will be searched in Additional Information."
+                                       id="additional_info_pub" name="search_keyword" required>
+                            </div>
+                            <div>
+                                <button type="submit" class="button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
             </div>
-
-
 
         </div>
 

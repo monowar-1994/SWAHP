@@ -61,6 +61,21 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
     }
 
     @Override
+    public NewsMediaRecord saveEditedNewsMediaRecord(NewsMediaRecord editedRecord) {
+        return newsMediaRecordRepository.save(editedRecord);
+    }
+
+    @Override
+    public BibliographicRecord saveEditedBibliographicRecord(BibliographicRecord editedRecord) {
+        return bibliographicRecordRepository.save(editedRecord);
+    }
+
+    @Override
+    public WebsiteRecord saveEditedWebsiteRecord(WebsiteRecord editedRecord) {
+        return websiteRecordRepository.save(editedRecord);
+    }
+
+    @Override
     public List<ArchivalRecord> searchByKeywordInTitleAndTagsInArchive(String titleKeyword) {
         if(titleKeyword.length()==0){
             return new ArrayList<ArchivalRecord>();
@@ -106,7 +121,6 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
 //        else{
 //            pageable = PageRequest.of(pageNo-1, pageSize);
 //        }
-
         return archiveRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
     }
 
@@ -124,7 +138,6 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
 //        else{
 //            pageable = PageRequest.of(pageNo-1, pageSize);
 //        }
-
         return newsMediaRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
     }
 
@@ -142,7 +155,6 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
 //        else{
 //            pageable = PageRequest.of(pageNo-1, pageSize);
 //        }
-
         return websiteRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
     }
 
@@ -160,8 +172,6 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
 //        else{
 //            pageable = PageRequest.of(pageNo-1, pageSize);
 //        }
-
-
         return bibliographicRecordRepository.findAll(getPageSettings(pageNo, pageSize, sortField, sortDirection));
     }
 
@@ -172,17 +182,113 @@ public class RecordFetchingServiceImplementation implements RecordFetchingServic
 
     @Override
     public Optional<WebsiteRecord> fetchRecordByItemNumberInWebsite(String itemNumber) {
-        return Optional.empty();
+        return websiteRecordRepository.fetchRecordByItemNumber(itemNumber);
     }
 
     @Override
     public Optional<NewsMediaRecord> fetchRecordByItemNumberInNewsMedia(String itemNumber) {
-        return Optional.empty();
+        return newsMediaRecordRepository.fetchRecordByItemNumber(itemNumber);
     }
 
     @Override
     public Optional<BibliographicRecord> fetchRecordByItemNumberInBibliography(String itemNumber) {
-        return Optional.empty();
+        return bibliographicRecordRepository.fetchRecordByItemNumber(itemNumber);
+    }
+
+    @Override
+    public List<WebsiteRecord> fetchWebsiteRecordByKeywordInAbstractAndTitle(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return websiteRecordRepository.fetchRecordByKeywordInTitleAndAbstract(keyword);
+    }
+
+    @Override
+    public List<WebsiteRecord> fetchWebsiteRecordByKeywordInCreatorAndCollection(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return websiteRecordRepository.fetchRecordByCreatorAndCollection(keyword);
+    }
+
+    @Override
+    public List<WebsiteRecord> fetchWebsiteRecordByKeywordInTags(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return websiteRecordRepository.fetchRecordByTags(keyword);
+    }
+
+    @Override
+    public List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInTitleAndAbstract(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return newsMediaRecordRepository.fetchRecordByKeywordInTitleAndAbstract(keyword);
+    }
+
+    @Override
+    public List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInAuthor(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return newsMediaRecordRepository.fetchRecordByAuthor(keyword);
+    }
+
+    @Override
+    public List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInPublicationTitle(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return newsMediaRecordRepository.fetchRecordByPublicationTitle(keyword);
+    }
+
+    @Override
+    public List<NewsMediaRecord> fetchNewsMediaRecordByKeywordInPlaceAndSection(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return newsMediaRecordRepository.fetchRecordByKeywordInPlaceAndSection(keyword);
+    }
+
+    @Override
+    public List<BibliographicRecord> fetchBibliographyRecordByKeywordInTitleAndAbstract(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return bibliographicRecordRepository.fetchRecordByKeywordInTitleAndAbstract(keyword);
+    }
+
+    @Override
+    public List<BibliographicRecord> fetchBibliographyRecordByKeywordInAuthor(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return bibliographicRecordRepository.fetchRecordByAuthor(keyword);
+    }
+
+    @Override
+    public List<BibliographicRecord> fetchBibliographicRecordByKeywordInPublicationTitle(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return bibliographicRecordRepository.fetchRecordByPublicationTitle(keyword);
+    }
+
+    @Override
+    public List<BibliographicRecord> fetchBibliographicRecordByKeywordInPlaceAndPublication(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return bibliographicRecordRepository.fetchRecordByKeywordInPlaceAndPublisher(keyword);
+    }
+
+    @Override
+    public List<BibliographicRecord> fetchBibliographicRecordByKeywordInAdditionalInformation(String keyword) {
+        if(keyword== null || keyword.length()==0){
+            return null;
+        }
+        return bibliographicRecordRepository.fetchRecordByAdditionalInformation(keyword);
     }
 
     public Pageable getPageSettings(int pageNo, int pageSize, String sortField, String sortDirection){

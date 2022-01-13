@@ -186,7 +186,7 @@
 
         <div class="right_section">
 
-            <h2>Create a record to insert in the database</h2>
+            <h2>Create a website record to insert in the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -195,10 +195,10 @@
                   th:object="${dataRecordFormEntity}">
 
                 <div class="form-group">
-                    <label for="ItemNumber">Item Number:</label>
+                    <label for="ItemNumber">Item number:</label>
                     <div>
                         <input type="text" th:field="*{websiteRecord.itemNumber}"
-                               id="ItemNumber" placeholder="Enter Item Number"
+                               id="ItemNumber" placeholder="Enter Item number"
                                name="ItemNumber" maxlength="255" required>
                     </div>
                 </div>
@@ -223,31 +223,31 @@
                     <label for="Summary">Summary:</label>
                     <div>
                         <input type="text" th:field="*{websiteRecord.summary}"
-                               id="Summary" placeholder="Enter Summary (255 Characters)" name="Summary" required maxlength="255">
+                               id="Summary" placeholder="Enter Summary (1000 Characters)" name="Summary" required maxlength="1000">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Original_Created">Originally created on:</label>
+                    <label for="Original_Created">Date original created:</label>
                     <div>
-                        <input type="text" th:field="*{websiteRecord.dateOriginalCreated}"
+                        <input type="date" th:field="*{websiteRecord.dateOriginalCreated}"
                                id="Original_Created" placeholder="Enter Creation Date" name="dateOriginalCreated">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="dateCaptured">Date Captured:</label>
+                    <label for="dateCaptured">Date captured:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.dateCaptured}"
-                               id="dateCaptured" placeholder="Enter Date Captured" name="dateCaptured">
+                               id="dateCaptured" placeholder="Enter Date captured" name="dateCaptured">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label  for="Genre">Genre of Item:</label>
+                    <label  for="Genre">Genre of item:</label>
                     <div >
                         <input type="text"  th:field="*{websiteRecord.genreOfItem}"
-                               id="Genre" placeholder="Enter Genre of Item (100 Characters)"
+                               id="Genre" placeholder="Enter Genre of item (100 Characters)"
                                name="Genre" maxlength="100">
                     </div>
                 </div>
@@ -265,7 +265,15 @@
                     <label for="Collection">Collection:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.collection}"
-                               id="Collection" placeholder="Enter Collection Name (255 Characters)" name="Collection">
+                               id="Collection" placeholder="Enter Collection(255 Characters)" name="Collection">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="alsoKnownAs">Also known as:</label>
+                    <div >
+                        <input type="text" th:field="*{websiteRecord.alsoKnownAs}"
+                               id="alsoKnownAs" placeholder="Enter also known as" name="alsoKnownAs" maxlength="255">
                     </div>
                 </div>
 
@@ -273,24 +281,18 @@
                     <label for="tags">Tags:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.tags}"
-                               id="tags" placeholder="Enter Tags (100 Characters). Separate Them by Commas."
-                               name="Keywords" maxlength="100">
+                               id="tags" placeholder="Enter Tags (500 Characters). Separate them by comma and semi-colon"
+                               name="Keywords" maxlength="512">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="alsoKnownAs">Also Known As:</label>
-                    <div >
-                        <input type="text" th:field="*{websiteRecord.alsoKnownAs}"
-                               id="alsoKnownAs" placeholder="Enter Also Known as. " name="alsoKnownAs" maxlength="255">
-                    </div>
-                </div>
+
 
                 <div class="form-group">
                     <label for="rights">Rights:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.rights}"
-                               id="rights" placeholder="Enter Rights." name="rights" maxlength="255">
+                               id="rights" placeholder="Enter Rights" name="rights" maxlength="255">
                     </div>
                 </div>
 
@@ -298,10 +300,9 @@
                     <label for="url">URL:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.url}"
-                               id="url" placeholder="Enter URL." name="url" maxlength="2048">
+                               id="url" placeholder="Enter URL" name="url" maxlength="2048">
                     </div>
                 </div>
-
 
                 <div>
                     <h4>Select the artifact file to associate with this entry.</h4>

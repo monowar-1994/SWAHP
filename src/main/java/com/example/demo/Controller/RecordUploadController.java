@@ -1,3 +1,17 @@
+/**
+ * Author: Md. Monowar Anjum
+ * Email: monowar.a.1205022@gmail.com
+ * Date: 25 DEC, 2021
+ *
+ * Summary: This controller module is used to upload the record. The get
+ * method is used to get the upload form. The post method is used to upload
+ * the record. Please note that the post methods take a model attribute as a
+ * parameter. The model attribute is used to store the uploaded record. The model
+ * attribute is described in the Model package. The model attribute contains
+ * relevant ORM entity classes and their corresponding artifact files.
+ *
+ */
+
 package com.example.demo.Controller;
 
 import com.example.demo.Model.*;
@@ -113,6 +127,7 @@ public class RecordUploadController {
         }
 
         archivalRecord.setRecordCreationTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        archivalRecord.setRecordModificationTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         recordCreationService.createArchivalRecord(archivalRecord);
         modelAndView.addObject("status","SUCCESS");
         modelAndView.addObject("type","archive");
@@ -159,12 +174,12 @@ public class RecordUploadController {
 
 
         websiteRecord.setCreationTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        websiteRecord.setLastModifiedTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         recordCreationService.createWebsiteRecord(websiteRecord);
         modelAndView.addObject("status","SUCCESS");
         modelAndView.addObject("type","website");
         modelAndView.addObject("result", websiteRecord.getId());
         return modelAndView;
-
     }
 
     @PostMapping("/submitinformation/newsmedia")
@@ -204,6 +219,7 @@ public class RecordUploadController {
         }
 
         newsMediaRecord.setCreationTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        newsMediaRecord.setLastModifiedTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         recordCreationService.createNewsMediaRecord(newsMediaRecord);
         modelAndView.addObject("status","SUCCESS");
         modelAndView.addObject("type","newsmedia");
@@ -249,6 +265,7 @@ public class RecordUploadController {
 
 
         bibliographicRecord.setCreationTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        bibliographicRecord.setLastModifiedTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         recordCreationService.createBibliographicRecord(bibliographicRecord);
         modelAndView.addObject("status","SUCCESS");
         modelAndView.addObject("type","bibliography");

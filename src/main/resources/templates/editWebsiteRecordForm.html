@@ -70,13 +70,13 @@
         }
 
 
-         .dropbtn {
-             /*background-color: #04AA6D;*/
-             color: white;
-             padding: 16px;
-             /*font-size: 16px;*/
-             border: none;
-         }
+        .dropbtn {
+            /*background-color: #04AA6D;*/
+            color: white;
+            padding: 16px;
+            /*font-size: 16px;*/
+            border: none;
+        }
 
         .dropdown {
             position: relative;
@@ -197,8 +197,8 @@
 
                     <form method="post"
                           enctype="multipart/form-data"
-                          action="/edit/request"
-                          th:object="${record}">
+                          action="/edit/website/request"
+                          th:object="${websiteRecord}">
 
                         <div class="form-group">
                             <label for="Title">Id:</label>
@@ -212,7 +212,8 @@
                             <label for="ItemNumber">Item Number:</label>
                             <div>
                                 <input type="text" th:field="*{itemNumber}"
-                                       id="ItemNumber" th:placeholder="*{itemNumber}" required name="ItemNumber" maxlength="255" readonly/>
+                                       id="ItemNumber" th:placeholder="*{itemNumber}" required name="ItemNumber" maxlength="255"
+                                       readonly/>
                             </div>
                         </div>
 
@@ -232,6 +233,16 @@
                             </div>
                         </div>
 
+
+
+                        <div class="form-group">
+                            <label for="Original_Created">Originally created on:</label>
+                            <div class="col-sm-10">
+                                <input type="date" th:field="*{dateOriginalCreated}"
+                                       id="Original_Created" th:placeholder="*{dateOriginalCreated}" name="Original_Created">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="Summary">Summary:</label>
                             <div >
@@ -241,222 +252,120 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="Original_Created">Originally created on:</label>
-                            <div class="col-sm-10">
-                                <input type="date" th:field="*{original_Created}"
-                                       id="Original_Created" th:placeholder="*{original_Created}" name="Original_Created">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="Original_Date_Description">Original Date Description:</label>
+                            <label for="date_captured">Date Captured:</label>
                             <div>
-                                <input type="text" th:field="*{original_Date_Description}"
-                                       id="Original_Date_Description" th:placeholder="*{original_Date_Description}"
-                                       name="Original_Date_Description" maxlength="255">
+                                <input type="text" th:field="*{dateCaptured}"
+                                       id="date_captured" th:placeholder="*{dateCaptured}"
+                                       name="dateCaptured" maxlength="255">
                             </div>
                         </div>
 
+
                         <div class="form-group">
-                            <label for="Date_scanned">Date_scanned</label>
+                            <label for="genreOfItem">Genre of Item:</label>
                             <div>
-                                <input type="date" th:field="*{date_scanned}"
-                                       id="Date_scanned" th:placeholder="*{date_scanned}" name="Date_scanned">
+                                <input type="text" th:field="*{genreOfItem}"
+                                       id="genreOfItem" th:placeholder="*{genreOfItem}" name="genreOfItem">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Type">Type:</label>
-                            <div>
-                                <input type="text" th:field="*{type}"
-                                       id="Type" th:placeholder="*{type}" name="Type">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Genre">Genre:</label>
-                            <div>
-                                <input type="text" th:field="*{genre}"
-                                       id="Genre" th:placeholder="*{genre}" name="Genre" maxlength="100">
-                            </div>
-                        </div>
-
-<!--                        <div class="form-group">-->
-<!--                            <label for="People">People:</label>-->
-<!--                            <div >-->
-<!--                                <input type="text" th:field="*{people}"-->
-<!--                                       id="People" th:placeholder="*{people}" name="People" maxlength="255">-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-                        <div class="form-group">
-                            <label for="Place">Place:</label>
-                            <div>
-                                <input type="text" th:field="*{place}"
-                                       id="Place" th:placeholder="*{place}" name="Place" maxlength="255">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Creator">Creator:</label>
+                            <label for="creator">Creator:</label>
                             <div>
                                 <input type="text" th:field="*{creator}"
-                                       id="Creator" th:placeholder="*{creator}" name="Creator" maxlength="255">
+                                       id="creator" th:placeholder="*{creator}" name="creator" maxlength="100">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Contributors">Contributors:</label>
-                            <div >
-                                <input type="text" th:field="*{contributors}"
-                                       id="Contributors" th:placeholder="*{contributors}" name="Contributors" maxlength="255">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Copyright">Copyright:</label>
-                            <div>
-                                <input type="text" th:field="*{copyright}"
-                                       id="Copyright" th:placeholder="*{copyright}" name="Copyright" maxlength="255">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Collection">Collection:</label>
+                            <label for="collection">Collection:</label>
                             <div>
                                 <input type="text" th:field="*{collection}"
-                                       id="Collection" th:placeholder="*{collection}" name="Collection">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="Notes">The Story:</label>
-                            <div>
-                                <textarea class="input_notes" type="text" th:field="*{notes}"
-                                       id="Notes" th:placeholder="*{notes}" name="Notes" maxlength="10000"/>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="Keywords">Tags:</label>
-                            <div>
-                                <input type="text" th:field="*{keywords}"
-                                       id="Keywords" th:placeholder="*{keywords}" name="Keywords" maxlength="100">
+                                       id="collection" th:placeholder="*{collection}" name="collection" maxlength="1000">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Format">Format:</label>
+                            <label for="alsoKnownAs">Also Known As:</label>
                             <div>
-                                <input type="text" th:field="*{format}"
-                                       id="Format" th:placeholder="*{format}" name="Format" maxlength="20">
+                                <input type="text" th:field="*{alsoKnownAs}"
+                                       id="alsoKnownAs" th:placeholder="*{alsoKnownAs}" name="alsoKnownAs" maxlength="255">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Size_MB">Size_MB:</label>
+                            <label for="tags">Tags:</label>
                             <div>
-                                <input type="number" th:field="*{size_MB}"
-                                       id="Size_MB" th:placeholder="*{size_MB}" name="Size_MB" step="any">
+                                <input type="text" th:field="*{tags}"
+                                       id="tags" th:placeholder="*{tags}" name="tags" maxlength="512">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Pixel_width">Pixel width:</label>
+                            <label for="rights">Rights:</label>
                             <div>
-                                <input type="number" th:field="*{pixel_width}"
-                                       id="Pixel_width" th:placeholder="*{pixel_width}" name="Pixel_width">
+                                <input type="text" th:field="*{rights}"
+                                       id="rights" th:placeholder="*{rights}" name="rights" maxlength="255">
                             </div>
                         </div>
+
+
+
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label for="Keywords">Tags:</label>-->
+                        <!--                            <div>-->
+                        <!--                                <input type="text" th:field="*{keywords}"-->
+                        <!--                                       id="Keywords" th:placeholder="*{keywords}" name="Keywords" maxlength="100">-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
 
                         <div class="form-group">
-                            <label for="Pixel_height">Pixel height</label>
+                            <label for="url">Url:</label>
                             <div>
-                                <input type="number" th:field="*{pixel_height}"
-                                       id="Pixel_height" th:placeholder="*{pixel_height}" name="Pixel_height">
+                                <input type="text" th:field="*{url}"
+                                       id="url" th:placeholder="*{url}" name="url" maxlength="2048">
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="Resolution">Resolution</label>
-                            <div>
-                                <input type="number" th:field="*{resolution}"
-                                       id="Resolution" th:placeholder="*{resolution}" name="Resolution">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Bit_depth">Bit depth</label>
-                            <div>
-                                <input type="number" th:field="*{bit_depth}"
-                                       id="Bit_depth" th:placeholder="*{bit_depth}" name="Bit_depth">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Color_GreyScale">Colour/GreyScale</label>
-                            <div>
-                                <input type="text" th:field="*{color_GreyScale}"
-                                       id="Color_GreyScale" th:placeholder="*{color_GreyScale}" name="Color_GreyScale">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="PageCount">Page Count</label>
-                            <div>
-                                <input type="number" th:field="*{pageCount}"
-                                       id="PageCount" th:placeholder="*{pageCount}" name="PageCount">
-                            </div>
-                        </div>
-
-<!--                        <div class="form-group">-->
-<!--                            <label for="Scanner_Notes">Notes about the scan</label>-->
-<!--                            <div>-->
-<!--                                <input type="text" th:field="*{scanner_Notes}"-->
-<!--                                       id="Scanner_Notes" th:placeholder="*{scanner_Notes}" name="Scanner_Notes">-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        <div class="form-group">-->
-<!--                            <label for="Abstract">Abstract</label>-->
-<!--                            <div>-->
-<!--                                <input type="text" th:field="*{abstract}"-->
-<!--                                       id="Abstract" th:placeholder="*{abstract}" name="Abstract" maxlength="255">-->
-<!--                            </div>-->
-<!--                        </div>-->
 
                         <div class="form-group">
                             <label for="tiff_name">Artifact File Name</label>
                             <div>
-                                <input type="text" th:field="*{tiffFileName}"
-                                       id="tiff_name" th:placeholder="*{tiffFileName}" name="tiff_file_name" maxlength="255" readonly>
+                                <input type="text" th:field="*{artifactFileName}"
+                                       id="tiff_name" th:placeholder="*{artifactFileName}" name="artifactFileName" maxlength="255" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="tiff_location">Artifact File Location</label>
                             <div>
-                                <input type="text" th:field="*{tiffFileLocation}"
-                                       id="tiff_location" th:placeholder="*{tiffFileLocation}" name="tiff_file_loc" maxlength="255" readonly>
+                                <input type="text" th:field="*{artifactFileLocation}"
+                                       id="tiff_location" th:placeholder="*{artifactFileLocation}" name="artifactFileLocation" maxlength="255" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="pdf_location">Artifact PDF File Location</label>
+                            <label for="pdf_location">Access File Location</label>
                             <div>
-                                <input type="text" th:field="*{pdfFileLocation}"
-                                       id="pdf_location" th:placeholder="*{pdfFileLocation}" name="pdf_file_loc" maxlength="255" readonly>
+                                <input type="text" th:field="*{accessFileLocation}"
+                                       id="pdf_location" th:placeholder="*{accessFileLocation}" name="accessFileLocation" maxlength="255" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="pdf_location">Preservation Hash MD5</label>
+                            <label for="artifact_hash">Preservation Hash MD5</label>
                             <div>
-                                <input type="text" th:field="*{artifact_MD5_Hash}"
-                                       id="artifact_hash" th:placeholder="*{artifact_MD5_Hash}" name="artifact_hash" maxlength="255" readonly>
+                                <input type="text" th:field="*{preservationHash}"
+                                       id="artifact_hash" th:placeholder="*{preservationHash}" name="preservationHash" maxlength="255" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="creation_time">Creation Time</label>
+                            <div>
+                                <input type="text" th:field="*{creationTime}"
+                                       id="creation_time" th:placeholder="*{creationTime}" name="creationTime" maxlength="255" readonly>
                             </div>
                         </div>
 

@@ -156,7 +156,8 @@
                         <td><a th:text="${record.getItemNumber()}" th:href="@{/view/getrecord/bibliography(recordID=${record.getId()})}"> </a></td>
                         <td><span th:text="${record.getTitle()}"> Title </span></td>
                         <td><span th:text="${record.getSummary()}"> Abstract </span></td>
-                        <td><span th:if="${record.getDateOriginalCreated() != null}" th:text="${record.getDateOriginalCreated()}"> Originally Created </span></td>
+                        <td><span th:if="${record.getDateOriginalCreated() != null}"
+                                  th:text="${ record.getDateOriginalCreated().toGMTString().substring(0,11)}"> Originally Created </span></td>
                     </tr>
                     </tbody>
                 </table>

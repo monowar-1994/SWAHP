@@ -172,7 +172,7 @@
             </div>
 
             <div class="col_1">
-                <h1>Recent Activities</h1>
+                <h1>![](../images/li.png)Recent Activities</h1>
                 <div class="box">
                     <p>Recent Activities in the repository will be listed here.</p>
                     <br>
@@ -187,7 +187,7 @@
 
         <div class="right_section">
 
-            <h2>Create a record to insert in the database</h2>
+            <h2>Create an archival record to insert in the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -196,7 +196,7 @@
                   th:object="${dataRecordFormEntity}">
 
                 <div class="form-group">
-                    <label for="Title">Item Number:</label>
+                    <label for="Title">Item number:</label>
                     <div>
                         <input type="text" th:field="*{archivalRecord.itemNumber}"
                                id="ItemNumber" placeholder="Enter Item Number" name="ItemNumber" maxlength="255" required>
@@ -223,12 +223,12 @@
                     <label for="Summary">Summary:</label>
                     <div>
                         <input type="text" th:field="*{archivalRecord.summary}"
-                               id="Summary" placeholder="Enter Summary (255 Characters)" name="Summary" required maxlength="255">
+                               id="Summary" placeholder="Enter Summary (1000 Characters)" name="Summary" required maxlength="1000">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Original_Created">Originally created on:</label>
+                    <label for="Original_Created">Date original created:</label>
                     <div>
                         <input type="date" th:field="*{archivalRecord.original_Created}"
                                id="Original_Created" placeholder="Enter Creation Date" name="Original_Created">
@@ -237,11 +237,27 @@
 
 
                 <div class="form-group">
-                    <label for="Original_Date_Description">Original Date Description:</label>
+                    <label for="Original_Date_Description">Original date description:</label>
                     <div >
                         <input type="text" th:field="*{archivalRecord.original_Date_Description}"
-                               id="Original_Date_Description" placeholder="Enter Original_Date_Description"
+                               id="Original_Date_Description" placeholder="Enter Original Date Description"
                                name="Original_Date_Description" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Date_scanned">Date scanned/photographed:</label>
+                    <div >
+                        <input type="date" th:field="*{archivalRecord.date_scanned}"
+                               id="Date_scanned" placeholder="Enter the date you scanned or photographed this" name="Date_scanned">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  for="Genre">Genre of item:</label>
+                    <div >
+                        <input type="text"  th:field="*{archivalRecord.genre}"
+                               id="Genre" placeholder="Enter Genre (100 Characters)" name="Genre" maxlength="100">
                     </div>
                 </div>
 
@@ -253,13 +269,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label  for="Genre">Genre:</label>
-                    <div >
-                        <input type="text"  th:field="*{archivalRecord.genre}"
-                               id="Genre" placeholder="Enter Category (100 Characters)" name="Genre" maxlength="100">
-                    </div>
-                </div>
+
 
                 <div class="form-group">
                     <label for="Place">Place:</label>
@@ -297,16 +307,16 @@
                     <label for="Collection">Collection:</label>
                     <div >
                         <input type="text" th:field="*{archivalRecord.collection}"
-                               id="Collection" placeholder="Enter Collection Name (255 Characters)" name="Collection">
+                               id="Collection" placeholder="Enter Collection (255 Characters)" name="Collection">
                     </div>
                 </div>
 
 
                 <div class="form-group">
-                    <label for="Notes">The Story:</label>
+                    <label for="Notes">The story:</label>
                     <div >
                         <textarea class="input_notes" type="text" th:field="*{archivalRecord.notes}"
-                                  id="Notes" placeholder="Enter Notes (10000 Characters)" name="Notes" maxlength="9999"></textarea>
+                                  id="Notes" placeholder="Enter the story(10000 Characters)" name="Notes" maxlength="9999"></textarea>
                     </div>
                 </div>
 
@@ -315,7 +325,7 @@
                     <label for="Keywords">Tags:</label>
                     <div >
                         <input type="text" th:field="*{archivalRecord.keywords}"
-                               id="Keywords" placeholder="Enter Keywords (100 Characters). Separate Them by Commas." name="Keywords" maxlength="100">
+                               id="Keywords" placeholder="Enter tags (500 Characters). Separate them by comma and semicolon." name="Keywords" maxlength="500">
                     </div>
                 </div>
 
@@ -323,12 +333,12 @@
                     <label for="Format">Format:</label>
                     <div >
                         <input type="text" th:field="*{archivalRecord.format}"
-                               id="Format" placeholder="Enter Format (Tiff, Jpeg) etc. " name="Format" maxlength="20">
+                               id="Format" placeholder="Enter format (e.g., tiff, jpeg, pdf). " name="Format" maxlength="20">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Size_MB">Size_MB:</label>
+                    <label for="Size_MB">Size (in MB):</label>
                     <div >
                         <input type="number" th:field="*{archivalRecord.size_MB}"
                                id="Size_MB" placeholder="Enter Size in MegaBytes" name="Size_MB" step="any">
@@ -339,7 +349,7 @@
                     <label for="Pixel_width">Pixel width:</label>
                     <div >
                         <input type="number"th:field="*{archivalRecord.pixel_width}"
-                               id="Pixel_width" placeholder="Enter Pixel width in Integer" name="Pixel_width">
+                               id="Pixel_width" placeholder="Enter Pixel width" name="Pixel_width">
                     </div>
                 </div>
 
@@ -347,15 +357,15 @@
                     <label for="Pixel_height">Pixel height</label>
                     <div >
                         <input type="number" th:field="*{archivalRecord.pixel_height}"
-                               id="Pixel_height" placeholder="Enter Pixel height in Integer" name="Pixel_height">
+                               id="Pixel_height" placeholder="Enter Pixel height" name="Pixel_height">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Resolution">Resolution</label>
+                    <label for="Resolution">Resolution (In pixels per inch)</label>
                     <div >
                         <input type="number" th:field="*{archivalRecord.resolution}"
-                               id="Resolution" placeholder="Enter Resolution in Integer" name="Resolution">
+                               id="Resolution" placeholder="Enter Resolution (In pixels per inch)" name="Resolution">
                     </div>
                 </div>
 
@@ -363,7 +373,7 @@
                     <label  for="Bit_depth">Bit depth</label>
                     <div >
                         <input type="number"  th:field="*{archivalRecord.bit_depth}"
-                               id="Bit_depth" placeholder="Enter Bit depth in Integer" name="Bit_depth">
+                               id="Bit_depth" placeholder="Enter Bit depth" name="Bit_depth">
                     </div>
                 </div>
 
@@ -371,23 +381,15 @@
                     <label  for="Color_GreyScale">Colour/GreyScale</label>
                     <div >
                         <input type="text" th:field="*{archivalRecord.color_GreyScale}"
-                               id="Color_GreyScale" placeholder="Enter 'Colour' Or 'Grayscale'" name="Color_GreyScale">
+                               id="Color_GreyScale" placeholder="Enter colour/greyscale" name="Color_GreyScale">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="PageCount">Page Count</label>
+                    <label for="PageCount">Page Count (# pages in one file)</label>
                     <div >
                         <input type="number" th:field="*{archivalRecord.pageCount}"
-                               id="PageCount" placeholder="Enter Page Count in the object" name="PageCount">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="Date_scanned">Date_scanned</label>
-                    <div >
-                        <input type="date" th:field="*{archivalRecord.date_scanned}"
-                               id="Date_scanned" placeholder="Enter the date you scanned this" name="Date_scanned">
+                               id="PageCount" placeholder="Enter page count of artifact" name="PageCount">
                     </div>
                 </div>
 

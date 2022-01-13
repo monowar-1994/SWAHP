@@ -177,9 +177,9 @@
 
         <div class="right_section">
 
-            <div th:if="${Status}=='NotFound'"> Could not find the record with the specified ID </div>
+            <div th:if="${Status}=='FAIL'"> Unknown error occurred. Please contact the sysadmin. </div>
 
-            <div th:if="${Status}=='Found'">
+            <div th:if="${Status}=='SUCCESS'">
 
 
                 <h2 style="margin-top: 20px"><span style="margin: 20px auto" th:text="${resultRecord.getItemNumber()}"></span></h2>
@@ -194,7 +194,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         <tr>
                             <td>ID</td>
                             <td><span th:text="${resultRecord.getId()}"/></td>
@@ -222,24 +221,24 @@
                                       th:text="${resultRecord.getDateOriginalCreated().toGMTString().substring(0,11)}"/></td>
                         </tr>
                         <tr>
-                            <td>Date Captured</td>
-                            <td><span th:text="${resultRecord.getDateCaptured()}"/></td>
+                            <td>Date Added</td>
+                            <td><span th:text="${resultRecord.getDateAdded()}"/></td>
                         </tr>
                         <tr>
                             <td>Genre of Item</td>
                             <td><span th:text="${resultRecord.getGenreOfItem()}"/></td>
                         </tr>
                         <tr>
+                            <td>Series/td>
+                            <td><span th:text="${resultRecord.getSeries()}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Edition</td>
+                            <td><span th:text="${resultRecord.getEdition()}"/></td>
+                        </tr>
+                        <tr>
                             <td>Author</td>
                             <td><span th:text="${resultRecord.getAuthor()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Collection</td>
-                            <td><span th:text="${resultRecord.getCollection()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Tags</td>
-                            <td><span th:text="${resultRecord.getTags()}"/></td>
                         </tr>
                         <tr>
                             <td>Publication Title</td>
@@ -250,12 +249,24 @@
                             <td><span th:text="${resultRecord.getPlace()}"/></td>
                         </tr>
                         <tr>
-                            <td>Section</td>
-                            <td><span th:text="${resultRecord.getSection()}"/></td>
+                            <td>Publisher</td>
+                            <td><span th:text="${resultRecord.getPublisher()}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Volume/Issue</td>
+                            <td><span th:text="${resultRecord.getVolumeOrIssue()}"/></td>
                         </tr>
                         <tr>
                             <td>Pages</td>
                             <td><span th:text="${resultRecord.getPages()}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Identifier</td>
+                            <td><span th:text="${resultRecord.getIdentifier()}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Additional Information</td>
+                            <td><span th:text="${resultRecord.getAdditionalInformation()}"/></td>
                         </tr>
                         <tr>
                             <td>Rights</td>
@@ -264,6 +275,14 @@
                         <tr>
                             <td>url</td>
                             <td><span th:text="${resultRecord.getUrl()}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Creation Time</td>
+                            <td><span th:text="${resultRecord.getCreationTime()}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Last Modified Time</td>
+                            <td><span th:text="${resultRecord.getLastModifiedTime()}"/></td>
                         </tr>
                         <tr>
                             <td>Artifact File</td>
@@ -285,22 +304,13 @@
                             <td>Creation Time</td>
                             <td><span th:text="${resultRecord.getCreationTime()}"/></td>
                         </tr>
-                        <tr>
-                            <td>Last Modified Time</td>
-                            <td><span th:text="${resultRecord.getLastModifiedTime()}"/></td>
-                        </tr>
                         </tbody>
                     </table>
 
-                    <span style="justify-content: center"><a class="button_centred" th:href="@{/edit/newsmedia/byId(recordID=${resultRecord.getId()},recordType=${type})}"> Edit This Record</a></span>
+                    <span style="justify-content: center"><a class="button_centred" th:href="@{/edit/bibliography/byId(recordID=${resultRecord.getId()},recordType=${type})}"> Edit This Record</a></span>
 
-                    <form style="justify-content: center;"
-                          th:method="post"
-                          th:action="@{/edit/delete(id=${resultRecord.getId()},recordType=${type})}">
-                        <button type="submit" class="button3"
-                                onclick="return confirm('Are you sure you want to delete this item?');">
-                            Delete This Record
-                        </button>
+                    <form style="justify-content: center;"  th:method="post" th:action="@{/edit/delete(id=${resultRecord.getId()},recordType=${type})}">
+                        <button type="submit" class="button3">Delete This Record</button>
                     </form>
 
                 </div>
