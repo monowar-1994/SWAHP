@@ -155,7 +155,22 @@
                     </div>
 
                 </li>
-                <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
+                <li>
+                    <!--              <a th:href="@{/submitrecord/recordType}">Upload Single Record</a>-->
+                    <div class="dropdown">
+                        <a class="dropbtn">
+                            Upload Single Record
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a th:href="@{/submitrecord/informationform/archive}">Archive</a>
+                            <a th:href="@{/submitrecord/informationform/website}">Website</a>
+                            <a th:href="@{/submitrecord/informationform/newsmedia}">News Media</a>
+                            <a th:href="@{/submitrecord/informationform/bibliography}">Bibliography</a>
+                        </div>
+
+                    </div>
+                </li>
                 <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
                 <li><a th:href="@{/edit}">Edit Record</a></li>
             </ul>
@@ -187,7 +202,7 @@
 
         <div class="right_section">
 
-            <h2>Create a news media record to insert in the database</h2>
+            <h2>Create a news media record to add to the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -199,7 +214,7 @@
                     <label for="ItemNumber">Item number:</label>
                     <div>
                         <input type="text" th:field="*{newsMediaRecord.itemNumber}"
-                               id="ItemNumber" placeholder="Enter Item Number"
+                               id="ItemNumber" placeholder="Enter Item number"
                                name="ItemNumber" maxlength="255" required>
                     </div>
                 </div>
@@ -232,7 +247,7 @@
                     <label for="Original_Created">Date original created:</label>
                     <div>
                         <input type="date" th:field="*{newsMediaRecord.dateOriginalCreated}"
-                               id="Original_Created" placeholder="Enter Original Creation Date" name="dateOriginalCreated">
+                               id="Original_Created" placeholder="Enter Date original created" name="dateOriginalCreated">
                     </div>
                 </div>
 
@@ -240,7 +255,7 @@
                     <label for="dateCaptured">Date captured:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.dateCaptured}"
-                               id="dateCaptured" placeholder="Enter date captured" name="dateCaptured">
+                               id="dateCaptured" placeholder="Enter Date captured" name="dateCaptured">
                     </div>
                 </div>
 
@@ -248,7 +263,7 @@
                     <label  for="Genre">Genre of item:</label>
                     <div >
                         <input type="text"  th:field="*{newsMediaRecord.genreOfItem}"
-                               id="Genre" placeholder="Enter genre of item (100 Characters)"
+                               id="Genre" placeholder="Enter Genre of item (100 Characters)"
                                name="Genre" maxlength="100">
                     </div>
                 </div>
@@ -266,7 +281,7 @@
                     <label for="publicationTitle">Publication title:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.publicationTitle}"
-                               id="publicationTitle" placeholder="Enter publication title (1000 Characters)"
+                               id="publicationTitle" placeholder="Enter Publication title (1000 Characters)"
                                name="publicationTitle" maxlength="1000">
                     </div>
                 </div>
@@ -293,7 +308,7 @@
                     <label for="pages">Pages:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.pages}"
-                               id="pages" placeholder="Enter pages (255 Characters)"
+                               id="pages" placeholder="Enter Pages (255 Characters)"
                                name="pages" maxlength="255">
                     </div>
                 </div>
@@ -302,7 +317,7 @@
                     <label for="rights">Rights:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.rights}"
-                               id="rights" placeholder="Enter Rights." name="rights" maxlength="255">
+                               id="rights" placeholder="Enter Rights (255 characters)" name="rights" maxlength="255">
                     </div>
                 </div>
 
@@ -318,7 +333,7 @@
                     <label for="collection">Collection:</label>
                     <div >
                         <input type="text" th:field="*{newsMediaRecord.collection}"
-                               id="collection" placeholder="Enter Collection" name="collection" maxlength="255">
+                               id="collection" placeholder="Enter Collection (255 characters)" name="collection" maxlength="255">
                     </div>
                 </div>
 

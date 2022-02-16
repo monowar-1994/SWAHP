@@ -176,7 +176,7 @@ h6 {
 
 .navigation{
 	margin-bottom:5px;
-	padding:13px 5px;
+	padding:10px 4px;
 	background: #333d3f; 
 }
 
@@ -187,7 +187,7 @@ h6 {
 
 .navigation ul li{
 	margin:0px;
-	padding:0px 25px;
+	padding:0px 20px;
 	display:inline;
 	font-size:14px;
 	list-style-type:none;

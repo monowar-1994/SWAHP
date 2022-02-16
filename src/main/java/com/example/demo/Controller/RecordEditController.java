@@ -152,6 +152,11 @@ public class RecordEditController {
         }
     }
 
+    /**
+     * This method is used to edit an archival record.
+     * @param recordId The id of the record to be edited.
+     * @return A ModelAndView object.
+     */
     public ModelAndView deliverBibliographicRecordEditForm(String recordId){
         ModelAndView modelAndView = new ModelAndView("editBibliographicRecordForm");
         Long id;

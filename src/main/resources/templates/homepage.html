@@ -76,7 +76,22 @@
               </div>
 
           </li>
-          <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
+          <li>
+<!--              <a th:href="@{/submitrecord/recordType}">Upload Single Record</a>-->
+              <div class="dropdown">
+                  <a class="dropbtn">
+                      Upload Single Record
+                  </a>
+
+                  <div class="dropdown-content">
+                      <a th:href="@{/submitrecord/informationform/archive}">Archive</a>
+                      <a th:href="@{/submitrecord/informationform/website}">Website</a>
+                      <a th:href="@{/submitrecord/informationform/newsmedia}">News Media</a>
+                      <a th:href="@{/submitrecord/informationform/bibliography}">Bibliography</a>
+                  </div>
+
+              </div>
+          </li>
           <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
           <li><a th:href="@{/edit}">Edit Record</a></li>
       </ul>

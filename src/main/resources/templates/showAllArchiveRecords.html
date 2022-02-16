@@ -109,7 +109,22 @@
           </div>
 
         </li>
-        <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
+        <li>
+          <!--              <a th:href="@{/submitrecord/recordType}">Upload Single Record</a>-->
+          <div class="dropdown">
+            <a class="dropbtn">
+              Upload Single Record
+            </a>
+
+            <div class="dropdown-content">
+              <a th:href="@{/submitrecord/informationform/archive}">Archive</a>
+              <a th:href="@{/submitrecord/informationform/website}">Website</a>
+              <a th:href="@{/submitrecord/informationform/newsmedia}">News Media</a>
+              <a th:href="@{/submitrecord/informationform/bibliography}">Bibliography</a>
+            </div>
+
+          </div>
+        </li>
         <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
         <li><a th:href="@{/edit}">Edit Record</a></li>
       </ul>
@@ -145,10 +160,10 @@
         <table>
           <thead>
             <tr>
-              <th th:width="50px"> Item Number </th>
+              <th th:width="50px"> Item number </th>
               <th th:width="200px"> Title </th>
               <th th:width="350px"> Summary </th>
-              <th th:width="100px"> Original Date </th>
+              <th th:width="100px"> Original date </th>
               <th th:width="100px"> Collection </th>
             </tr>
           </thead>

@@ -153,7 +153,22 @@
                     </div>
 
                 </li>
-                <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
+                <li>
+                    <!--              <a th:href="@{/submitrecord/recordType}">Upload Single Record</a>-->
+                    <div class="dropdown">
+                        <a class="dropbtn">
+                            Upload Single Record
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a th:href="@{/submitrecord/informationform/archive}">Archive</a>
+                            <a th:href="@{/submitrecord/informationform/website}">Website</a>
+                            <a th:href="@{/submitrecord/informationform/newsmedia}">News Media</a>
+                            <a th:href="@{/submitrecord/informationform/bibliography}">Bibliography</a>
+                        </div>
+
+                    </div>
+                </li>
                 <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
                 <li><a th:href="@{/edit}">Edit Record</a></li>
             </ul>
@@ -185,7 +200,7 @@
 
         <div class="right_section">
 
-            <h2>Create a bibliography record to insert in the database</h2>
+            <h2>Create a bibliographic record to add to the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -348,7 +363,7 @@
                     <label for="rights">Rights:</label>
                     <div >
                         <input type="text" th:field="*{bibliographicRecord.rights}"
-                               id="rights" placeholder="Enter Rights" name="rights" maxlength="255">
+                               id="rights" placeholder="Enter Rights (255 characters)" name="rights" maxlength="255">
                     </div>
                 </div>
 
@@ -364,7 +379,7 @@
                     <label for="collection">Collection:</label>
                     <div>
                         <input type="text" th:field="*{bibliographicRecord.collection}"
-                               id="collection" placeholder="Enter Collection" name="collection" maxlength="255">
+                               id="collection" placeholder="Enter Collection (255 characters)" name="collection" maxlength="255">
                     </div>
                 </div>
 

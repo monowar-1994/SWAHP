@@ -154,7 +154,22 @@
                     </div>
 
                 </li>
-                <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
+                <li>
+                    <!--              <a th:href="@{/submitrecord/recordType}">Upload Single Record</a>-->
+                    <div class="dropdown">
+                        <a class="dropbtn">
+                            Upload Single Record
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a th:href="@{/submitrecord/informationform/archive}">Archive</a>
+                            <a th:href="@{/submitrecord/informationform/website}">Website</a>
+                            <a th:href="@{/submitrecord/informationform/newsmedia}">News Media</a>
+                            <a th:href="@{/submitrecord/informationform/bibliography}">Bibliography</a>
+                        </div>
+
+                    </div>
+                </li>
                 <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
                 <li><a th:href="@{/edit}">Edit Record</a></li>
             </ul>
@@ -186,7 +201,7 @@
 
         <div class="right_section">
 
-            <h2>Create a website record to insert in the database</h2>
+            <h2>Create a website record to add to the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -265,7 +280,7 @@
                     <label for="Collection">Collection:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.collection}"
-                               id="Collection" placeholder="Enter Collection(255 Characters)" name="Collection">
+                               id="Collection" placeholder="Enter Collection (255 Characters)" name="Collection">
                     </div>
                 </div>
 
@@ -273,7 +288,7 @@
                     <label for="alsoKnownAs">Also known as:</label>
                     <div >
                         <input type="text" th:field="*{websiteRecord.alsoKnownAs}"
-                               id="alsoKnownAs" placeholder="Enter also known as" name="alsoKnownAs" maxlength="255">
+                               id="alsoKnownAs" placeholder="Enter Also known as" name="alsoKnownAs" maxlength="255">
                     </div>
                 </div>
 

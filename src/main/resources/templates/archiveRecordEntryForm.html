@@ -155,7 +155,22 @@
                     </div>
 
                 </li>
-                <li><a th:href="@{/submitrecord/recordType}">Upload Single Record</a></li>
+                <li>
+                    <!--              <a th:href="@{/submitrecord/recordType}">Upload Single Record</a>-->
+                    <div class="dropdown">
+                        <a class="dropbtn">
+                            Upload Single Record
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a th:href="@{/submitrecord/informationform/archive}">Archive</a>
+                            <a th:href="@{/submitrecord/informationform/website}">Website</a>
+                            <a th:href="@{/submitrecord/informationform/newsmedia}">News Media</a>
+                            <a th:href="@{/submitrecord/informationform/bibliography}">Bibliography</a>
+                        </div>
+
+                    </div>
+                </li>
                 <li><a th:href="@{/batch/uploadPage}">Upload Batch Record</a></li>
                 <li><a th:href="@{/edit}">Edit Record</a></li>
             </ul>
@@ -172,7 +187,7 @@
             </div>
 
             <div class="col_1">
-                <h1>![](../images/li.png)Recent Activities</h1>
+                <h1>Recent Activities</h1>
                 <div class="box">
                     <p>Recent Activities in the repository will be listed here.</p>
                     <br>
@@ -187,7 +202,7 @@
 
         <div class="right_section">
 
-            <h2>Create an archival record to insert in the database</h2>
+            <h2>Create an archival record to add to the database</h2>
 
             <form class="form-horizontal"
                   method="post"
@@ -199,7 +214,7 @@
                     <label for="Title">Item number:</label>
                     <div>
                         <input type="text" th:field="*{archivalRecord.itemNumber}"
-                               id="ItemNumber" placeholder="Enter Item Number" name="ItemNumber" maxlength="255" required>
+                               id="ItemNumber" placeholder="Enter Item number" name="ItemNumber" maxlength="255" required>
                     </div>
                 </div>
 
@@ -316,7 +331,7 @@
                     <label for="Notes">The story:</label>
                     <div >
                         <textarea class="input_notes" type="text" th:field="*{archivalRecord.notes}"
-                                  id="Notes" placeholder="Enter the story(10000 Characters)" name="Notes" maxlength="9999"></textarea>
+                                  id="Notes" placeholder="Enter the story (10000 Characters)" name="Notes" maxlength="9999"></textarea>
                     </div>
                 </div>
 
@@ -325,7 +340,7 @@
                     <label for="Keywords">Tags:</label>
                     <div >
                         <input type="text" th:field="*{archivalRecord.keywords}"
-                               id="Keywords" placeholder="Enter tags (500 Characters). Separate them by comma and semicolon." name="Keywords" maxlength="500">
+                               id="Keywords" placeholder="Enter Tags (500 Characters). Separate them by comma and semi-colon." name="Keywords" maxlength="500">
                     </div>
                 </div>
 
@@ -378,7 +393,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label  for="Color_GreyScale">Colour/GreyScale</label>
+                    <label  for="Color_GreyScale">Colour/greyscale</label>
                     <div >
                         <input type="text" th:field="*{archivalRecord.color_GreyScale}"
                                id="Color_GreyScale" placeholder="Enter colour/greyscale" name="Color_GreyScale">
